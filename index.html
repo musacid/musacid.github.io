@@ -3,47 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقع مساعد | Musacid</title>
+    <meta name="description" content="موقع مساعد للمنتجات الرقمية وخطط تحفيظ القرآن الكريم">
+    <title>مساعد | Musacid</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
         body {
-            font-family: 'Tahoma', sans-serif;
-            background-color: #f4f4f9;
-            text-align: center;
-            padding: 50px;
-            color: #333;
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f8f9fa;
         }
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            max-width: 600px;
-            margin: auto;
-        }
-        h1 { color: #2c3e50; }
-        p { font-size: 18px; line-height: 1.6; }
-        .btn {
-            display: inline-block;
-            background-color: #27ae60;
+        .hero-section {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
-            font-weight: bold;
+            padding: 100px 0;
+            text-align: center;
         }
-        .btn:hover { background-color: #219150; }
+        .product-card {
+            border: none;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .btn-primary-custom {
+            background-color: #f1c40f;
+            color: #333;
+            font-weight: bold;
+            border: none;
+            padding: 10px 30px;
+        }
+        .btn-primary-custom:hover {
+            background-color: #d4ac0d;
+            color: #000;
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>مرحباً بك في موقعي</h1>
-        <p>أهلاً بك! أنا <strong>مساعد (Musacid)</strong>.</p>
-        <p>هذا الموقع قيد الإنشاء حالياً. قريباً سأشارك معكم مشاريعي وخطط تحفيظ القرآن الكريم.</p>
-        
-        <a href="#" class="btn">تواصل معي قريباً</a>
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">مُساعِد | Musacid</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" href="#">الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products">منتجاتنا</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">تواصل معنا</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">خطط إبداعية لحفظ القرآن وتطوير الذات</h1>
+            <p class="lead mb-4">نقدم لك أدوات رقمية مساعدة، مصممة بإتقان لتختصر عليك الطريق.</p>
+            <a href="#products" class="btn btn-primary-custom btn-lg">تصفح المنتجات</a>
+        </div>
+    </section>
+
+    <section id="products" class="container my-5">
+        <h2 class="text-center mb-5 fw-bold">أحدث المنتجات</h2>
+        <div class="row">
+            
+            <div class="col-md-4 mb-4">
+                <div class="card product-card h-100">
+                    <div style="height: 200px; background-color: #ddd; display: flex; align-items: center; justify-content: center; color: #777;">
+                        صورة المنتج هنا
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">خطة السراج لحفظ القرآن</h5>
+                        <p class="card-text text-muted">جدول تفاعلي ذكي يساعدك على ختم القرآن في 3 أشهر بتصميم احترافي.</p>
+                        <h4 class="text-primary mb-3">$10.00</h4>
+                        <a href="#" class="btn btn-outline-dark w-100">شراء الآن</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card product-card h-100">
+                    <div style="height: 200px; background-color: #ddd; display: flex; align-items: center; justify-content: center; color: #777;">
+                        صورة المنتج هنا
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">قوالب Notion للدراسة</h5>
+                        <p class="card-text text-muted">نظم وقتك الدراسي والجامعي مع هذه القوالب الجاهزة.</p>
+                        <h4 class="text-primary mb-3">$5.00</h4>
+                        <a href="#" class="btn btn-outline-dark w-100">شراء الآن</a>
+                    </div>
+                </div>
+            </div>
+
+             <div class="col-md-4 mb-4">
+                <div class="card product-card h-100">
+                    <div style="height: 200px; background-color: #ddd; display: flex; align-items: center; justify-content: center; color: #777;">
+                        صورة المنتج هنا
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">استشارة بحثية</h5>
+                        <p class="card-text text-muted">مساعدة في إعداد خطط البحوث وفهرسة المصادر.</p>
+                        <h4 class="text-primary mb-3">تواصل للسعر</h4>
+                        <a href="#contact" class="btn btn-outline-dark w-100">احجز موعداً</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-0">جميع الحقوق محفوظة &copy; 2025 لموقع مساعد (Musacid)</p>
+            <small>تم التصميم والتطوير بواسطة عبدالرشيد</small>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
