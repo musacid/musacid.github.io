@@ -46,7 +46,7 @@
         .live-clock { font-family: monospace; font-size: 1.2rem; color: #d4ac0d; font-weight: bold; margin-bottom: 10px; }
         .quote-container { font-size: 0.9rem; color: #e0e0e0; min-height: 50px; direction: rtl; text-align: left; }
         
-        /* --- القائمة الجانبية الذكية (داخل العمود) --- */
+        /* --- القائمة الجانبية الذكية --- */
         .sidebar-wrapper {
             position: sticky; 
             top: 100px;
@@ -259,6 +259,9 @@
                                 </div>
                             </div>
                         </form>
+                        <div class="text-center mt-3 text-muted" style="font-size: 0.8rem;">
+                            ملاحظة: سيتم تحويلك إلى تطبيق البريد الإلكتروني لإرسال الطلب.
+                        </div>
                     </div>
                 </section>
             </div>
@@ -323,10 +326,10 @@
                 </div>
                 <div class="col-md-4 mb-4 text-center text-md-start">
                     <h5>اشترك في القائمة البريدية</h5>
-                    <p class="small">ليصلك كل جديد من الخطط والعروض.</p>
+                    <p class="small">ليصلك كل جديد عبر الواتساب/الإيميل.</p>
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="بريدك الإلكتروني">
-                        <button class="btn btn-warning" type="button">اشتراك</button>
+                        <input type="email" class="form-control" id="subEmail" placeholder="بريدك الإلكتروني">
+                        <button class="btn btn-warning" type="button" onclick="subscribe()">اشتراك</button>
                     </div>
                     <div class="mt-3 small text-white-50">
                         <i class="fas fa-envelope me-2"></i> musacidcex@gmail.com<br>
@@ -351,8 +354,13 @@
             else if (type === 'تصميم خطة جديدة') { newPlanDiv.style.display = 'block'; }
         }
 
+        // دالة إرسال طلب الخدمة (تم تحديثها)
         function sendServiceEmail(e) {
             e.preventDefault();
+            
+            // 1. إظهار رسالة للمستخدم أولاً
+            alert("سيتم نقلك الآن لتطبيق البريد الإلكتروني لإرسال الرسالة. إذا لم يفتح التطبيق، يرجى التواصل عبر الواتساب.");
+
             const name = document.getElementById('clientName').value;
             const phone = document.getElementById('clientPhone').value;
             const type = document.getElementById('serviceType').value;
@@ -360,9 +368,23 @@
             let extraInfo = "";
             if (type === 'تعديل خطة سابقة') { extraInfo = `الخطة المراد تعديلها: ${document.getElementById('modifySelection').value}`; }
             else if (type === 'تصميم خطة جديدة') { extraInfo = `نوع الخطة المقترحة: ${document.getElementById('newPlanSelection').value}`; }
+            
             const subject = `طلب جديد: ${type}`;
             const body = `الاسم: ${name}%0D%0Aرقم الهاتف: ${phone}%0D%0Aنوع الطلب: ${type}%0D%0A${extraInfo}%0D%0A%0D%0Aتفاصيل الرسالة:%0D%0A${msg}`;
+            
             window.location.href = `mailto:musacidcex@gmail.com?subject=${subject}&body=${body}`;
+        }
+
+        // دالة الاشتراك في القائمة البريدية (جديدة)
+        function subscribe() {
+            const email = document.getElementById('subEmail').value;
+            if(email.length < 5) {
+                alert("الرجاء كتابة البريد الإلكتروني بشكل صحيح");
+                return;
+            }
+            alert("سيتم تحويلك لإرسال طلب الاشتراك");
+            // سيرسل طلب اشتراك عبر الواتساب ليكون أسرع
+            window.open(`https://wa.me/966548137612?text=مرحبا، أرغب في الاشتراك في القائمة البريدية. إيميلي هو: ${email}`, '_blank');
         }
 
         function updateTime() {
