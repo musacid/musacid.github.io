@@ -3,112 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="موقع مساعد للمنتجات الرقمية وخطط تحفيظ القرآن الكريم">
-    <title>مساعد | Musacid</title>
+    <meta name="description" content="خطة السراج المكثفة لحفظ القرآن الكريم - جداول احترافية وخطط مدروسة">
+    <title>مساعد | Musacid - خطة السراج</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background-color: #f8f9fa;
-        }
+        body { font-family: 'Tajawal', sans-serif; background-color: #f9fbfd; }
+        
+        /* تنسيق الهيدر */
         .hero-section {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
             color: white;
-            padding: 100px 0;
+            padding: 120px 0 80px;
             text-align: center;
+            position: relative;
         }
+        
+        /* تنسيق كروت المنتجات */
         .product-card {
             border: none;
-            transition: transform 0.3s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            overflow: hidden;
+            height: 100%;
         }
         .product-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
         }
-        .btn-primary-custom {
-            background-color: #f1c40f;
-            color: #333;
-            font-weight: bold;
+        .card-img-top {
+            height: 250px;
+            object-fit: cover; /* يضمن أن الصورة تملأ المكان بشكل جميل */
+            border-bottom: 5px solid #d4ac0d;
+        }
+        .price-tag {
+            font-size: 1.5rem;
+            color: #27ae60;
+            font-weight: 800;
+            margin: 15px 0;
+        }
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1rem;
+            margin-left: 10px;
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            text-align: right;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        .feature-list li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+        .feature-list i {
+            color: #d4ac0d;
+            margin-left: 10px;
+        }
+        .btn-buy {
+            background: linear-gradient(45deg, #d4ac0d, #b7950b);
+            color: white;
             border: none;
-            padding: 10px 30px;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: bold;
+            width: 100%;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
         }
-        .btn-primary-custom:hover {
-            background-color: #d4ac0d;
-            color: #000;
+        .btn-buy:hover {
+            background: linear-gradient(45deg, #b7950b, #9a7d0a);
+            color: white;
+            transform: scale(1.02);
+        }
+        .badge-offer {
+            background-color: #e74c3c;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            z-index: 10;
         }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#">مُساعِد | Musacid</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" href="#">الرئيسية</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#products">منتجاتنا</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">تواصل معنا</a></li>
-                </ul>
-            </div>
+            <a class="navbar-brand fw-bold" href="#"><i class="fas fa-book-open me-2"></i> مُساعِد | Musacid</a>
         </div>
     </nav>
 
     <section class="hero-section">
         <div class="container">
-            <h1 class="display-4 fw-bold mb-3">خطط إبداعية لحفظ القرآن وتطوير الذات</h1>
-            <p class="lead mb-4">نقدم لك أدوات رقمية مساعدة، مصممة بإتقان لتختصر عليك الطريق.</p>
-            <a href="#products" class="btn btn-primary-custom btn-lg">تصفح المنتجات</a>
+            <h1 class="display-4 fw-bold mb-3">خطة السراج المكثفة</h1>
+            <p class="lead mb-4 opacity-75">خطواتك اليومية الصغيرة تصنع إنجازك العظيم بعد 90 يوماً</p>
+            <a href="#products" class="btn btn-light btn-lg rounded-pill px-5 fw-bold text-dark shadow">تصفح الخطط</a>
         </div>
     </section>
 
-    <section id="products" class="container my-5">
-        <h2 class="text-center mb-5 fw-bold">أحدث المنتجات</h2>
-        <div class="row">
+    <section id="products" class="container my-5 py-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold display-6">اختر باقتك المناسبة</h2>
+            <p class="text-muted">جداول مصممة بعناية لتبدأ رحلة الحفظ بثبات</p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
             
-            <div class="col-md-4 mb-4">
-                <div class="card product-card h-100">
-                    <div style="height: 200px; background-color: #ddd; display: flex; align-items: center; justify-content: center; color: #777;">
-                        صورة المنتج هنا
-                    </div>
-                    <div class="card-body text-center">
-                        <h5 class="card-title fw-bold">خطة السراج لحفظ القرآن</h5>
-                        <p class="card-text text-muted">جدول تفاعلي ذكي يساعدك على ختم القرآن في 3 أشهر بتصميم احترافي.</p>
-                        <h4 class="text-primary mb-3">$10.00</h4>
-                        <a href="#" class="btn btn-outline-dark w-100">شراء الآن</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="card product-card h-100">
-                    <div style="height: 200px; background-color: #ddd; display: flex; align-items: center; justify-content: center; color: #777;">
-                        صورة المنتج هنا
-                    </div>
-                    <div class="card-body text-center">
-                        <h5 class="card-title fw-bold">قوالب Notion للدراسة</h5>
-                        <p class="card-text text-muted">نظم وقتك الدراسي والجامعي مع هذه القوالب الجاهزة.</p>
-                        <h4 class="text-primary mb-3">$5.00</h4>
-                        <a href="#" class="btn btn-outline-dark w-100">شراء الآن</a>
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <img src="level1.jpg" class="card-img-top" alt="المستوى الأول">
+                    <div class="card-body p-4">
+                        <h4 class="card-title fw-bold">المستوى الأول (15 جزء)</h4>
+                        <p class="text-muted small">بداية الرحلة من الفاتحة إلى الكهف</p>
+                        <div class="price-tag">$4.00</div>
+                        
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i> خطة لمدة 3 أشهر (12 أسبوع)</li>
+                            <li><i class="fas fa-check-circle"></i> حفظ يومي: 5 صفحات</li>
+                            <li><i class="fas fa-check-circle"></i> نظام مراجعة مكثف (قريب وبعيد)</li>
+                            <li><i class="fas fa-file-pdf"></i> ملف PDF تفاعلي جاهز للطباعة</li>
+                        </ul>
+                        
+                        <a href="https://musacid.gumroad.com/l/bdotqz" target="_blank" class="btn-buy">
+                            <i class="fas fa-shopping-cart me-2"></i> اشترِ الآن
+                        </a>
                     </div>
                 </div>
             </div>
 
-             <div class="col-md-4 mb-4">
-                <div class="card product-card h-100">
-                    <div style="height: 200px; background-color: #ddd; display: flex; align-items: center; justify-content: center; color: #777;">
-                        صورة المنتج هنا
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card">
+                    <img src="level2.jpg" class="card-img-top" alt="المستوى الثاني">
+                    <div class="card-body p-4">
+                        <h4 class="card-title fw-bold">المستوى الثاني (الختم)</h4>
+                        <p class="text-muted small">من سورة الكهف إلى سورة الناس</p>
+                        <div class="price-tag">$4.00</div>
+                        
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i> إكمال الـ 15 جزءاً المتبقية</li>
+                            <li><i class="fas fa-check-circle"></i> جدول متابعة دقيق للإنجاز</li>
+                            <li><i class="fas fa-check-circle"></i> نصائح لتثبيت الحفظ والمراجعة</li>
+                            <li><i class="fas fa-award"></i> الوصول للحظة الختم العظيمة</li>
+                        </ul>
+                        
+                        <a href="https://musacid.gumroad.com/l/bdotqz" target="_blank" class="btn-buy">
+                            <i class="fas fa-shopping-cart me-2"></i> اشترِ الآن
+                        </a>
                     </div>
-                    <div class="card-body text-center">
-                        <h5 class="card-title fw-bold">استشارة بحثية</h5>
-                        <p class="card-text text-muted">مساعدة في إعداد خطط البحوث وفهرسة المصادر.</p>
-                        <h4 class="text-primary mb-3">تواصل للسعر</h4>
-                        <a href="#contact" class="btn btn-outline-dark w-100">احجز موعداً</a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="product-card border border-2 border-warning position-relative">
+                    <span class="badge-offer">الأكثر توفيراً ✨</span>
+                    <img src="sirajplan.jpg" class="card-img-top" alt="الخطة الكاملة">
+                    <div class="card-body p-4">
+                        <h4 class="card-title fw-bold">الخطة الكاملة (القرآن كاملاً)</h4>
+                        <p class="text-muted small">احصل على المستويين معاً بسعر مخفض</p>
+                        <div class="price-tag">$6.00 <span class="old-price">$8.00</span></div>
+                        
+                        <ul class="feature-list">
+                            <li><i class="fas fa-star"></i> توفير 25% من السعر الأصلي</li>
+                            <li><i class="fas fa-check-double"></i> تشمل المستوى الأول + الثاني</li>
+                            <li><i class="fas fa-calendar-alt"></i> خطة شاملة لمدة 6 أشهر</li>
+                            <li><i class="fas fa-gift"></i> تصميم فاخر وعالي الدقة</li>
+                        </ul>
+                        
+                        <a href="https://musacid.gumroad.com/l/bdotqz" target="_blank" class="btn-buy">
+                            <i class="fas fa-shopping-bag me-2"></i> احصل على العرض
+                        </a>
                     </div>
                 </div>
             </div>
@@ -116,10 +192,13 @@
         </div>
     </section>
 
-    <footer class="bg-dark text-white text-center py-4 mt-5">
+    <footer class="bg-dark text-white text-center py-4">
         <div class="container">
-            <p class="mb-0">جميع الحقوق محفوظة &copy; 2025 لموقع مساعد (Musacid)</p>
-            <small>تم التصميم والتطوير بواسطة عبدالرشيد</small>
+            <p class="mb-2">جميع الحقوق محفوظة &copy; 2025 | مُساعِد</p>
+            <small class="text-white-50">تم التصميم والتطوير بواسطة عبدالرشيد سعيد</small>
+            <div class="mt-3">
+                <a href="mailto:musacidcex@gmail.com" class="text-white mx-2"><i class="fas fa-envelope"></i></a>
+            </div>
         </div>
     </footer>
 
