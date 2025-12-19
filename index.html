@@ -3,121 +3,325 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="خطة السراج المكثفة لحفظ القرآن الكريم - جداول احترافية وخطط مدروسة">
+    <meta name="description" content="خطط إبداعية لحفظ القرآن وتطوير الذات - موقع مساعد">
     <title>مساعد | Musacid - خطة السراج</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <style>
-        body { font-family: 'Tajawal', sans-serif; background-color: #f9fbfd; }
-        
-        /* تنسيق الهيدر */
-        .hero-section {
-            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-            color: white;
-            padding: 120px 0 80px;
-            text-align: center;
-            position: relative;
+        body { 
+            font-family: 'Tajawal', sans-serif; 
+            background-color: #f4f7f6;
+            scroll-behavior: smooth;
+        }
+
+        /* --- القائمة الجانبية الثابتة (جديد) --- */
+        .sticky-sidebar {
+            position: fixed;
+            top: 120px; /* المسافة من الأعلى */
+            right: 20px;
+            width: 260px;
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            z-index: 90;
+            display: none; /* مخفية في الجوال افتراضياً */
+            border: 1px solid #eee;
+        }
+        /* إظهار القائمة فقط في الشاشات الكبيرة */
+        @media (min-width: 1200px) {
+            .sticky-sidebar { display: block; }
         }
         
-        /* تنسيق كروت المنتجات */
+        .sidebar-title {
+            font-size: 0.9rem;
+            color: #777;
+            border-bottom: 2px solid #d4ac0d;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .mini-product {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            transition: 0.2s;
+            text-decoration: none;
+            color: #333;
+        }
+        .mini-product:hover { background-color: #f9f9f9; transform: translateX(-5px); }
+        .mini-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-left: 10px;
+            border: 1px solid #ddd;
+        }
+        .mini-info h6 { font-size: 0.85rem; margin: 0; font-weight: bold; }
+        .mini-info span { font-size: 0.75rem; color: #27ae60; font-weight: bold; }
+
+        /* --- تنسيق الهيدر المتطور --- */
+        .hero-section {
+            background: linear-gradient(135deg, #141e30 0%, #243b55 100%);
+            color: white;
+            padding: 140px 0 60px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 5px solid #d4ac0d;
+        }
+        
+        /* تحديثات الهيدر */
+        .updates-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .update-item {
+            display: none;
+            animation: fadeIn 1s;
+            text-align: center;
+        }
+        .update-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #d4ac0d;
+            object-fit: cover;
+            margin-bottom: 5px;
+        }
+
+        /* الوقت والتحفيز */
+        .info-box { text-align: left; direction: ltr; }
+        .live-clock {
+            font-family: monospace;
+            font-size: 1.2rem;
+            color: #d4ac0d;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .quote-container {
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            min-height: 50px;
+            direction: rtl;
+            text-align: left;
+        }
+        
+        /* --- كروت المنتجات --- */
         .product-card {
             border: none;
             border-radius: 20px;
             transition: all 0.3s ease;
             background: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             height: 100%;
         }
         .product-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
         .card-img-top {
             height: 250px;
-            object-fit: cover; /* يضمن أن الصورة تملأ المكان بشكل جميل */
-            border-bottom: 5px solid #d4ac0d;
-        }
-        .price-tag {
-            font-size: 1.5rem;
-            color: #27ae60;
-            font-weight: 800;
-            margin: 15px 0;
-        }
-        .old-price {
-            text-decoration: line-through;
-            color: #999;
-            font-size: 1rem;
-            margin-left: 10px;
-        }
-        .feature-list {
-            list-style: none;
-            padding: 0;
-            text-align: right;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-        }
-        .feature-list li {
-            margin-bottom: 8px;
-            color: #555;
-        }
-        .feature-list i {
-            color: #d4ac0d;
-            margin-left: 10px;
+            object-fit: cover;
+            border-bottom: 4px solid #d4ac0d;
         }
         .btn-buy {
             background: linear-gradient(45deg, #d4ac0d, #b7950b);
             color: white;
             border: none;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: bold;
+            padding: 10px;
+            border-radius: 8px;
             width: 100%;
+            font-weight: bold;
             transition: 0.3s;
             text-decoration: none;
             display: inline-block;
+            text-align: center;
         }
-        .btn-buy:hover {
-            background: linear-gradient(45deg, #b7950b, #9a7d0a);
+        .btn-buy:hover { background: #9a7d0a; color: white; }
+
+        /* --- نموذج طلب خدمة --- */
+        .service-section {
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            margin-top: 50px;
+        }
+        .form-control, .form-select {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            padding: 12px;
+            border-radius: 10px;
+        }
+        .form-control:focus { border-color: #d4ac0d; box-shadow: 0 0 0 0.2rem rgba(212, 172, 13, 0.25); }
+
+        /* --- الفوتر --- */
+        footer {
+            background-color: #1a1a1a;
+            color: #aaa;
+            padding-top: 50px;
+            margin-top: 80px;
+            border-top: 5px solid #d4ac0d;
+        }
+        footer h5 { color: white; margin-bottom: 20px; font-weight: bold; }
+        footer a { color: #aaa; text-decoration: none; transition: 0.3s; }
+        footer a:hover { color: #d4ac0d; padding-right: 5px; }
+        .social-icons a {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            background: #333;
             color: white;
-            transform: scale(1.02);
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 5px;
+            font-size: 1.2rem;
+            transition: 0.3s;
+            text-decoration: none;
         }
-        .badge-offer {
-            background-color: #e74c3c;
+        .social-icons a:hover { background: #d4ac0d; transform: rotate(360deg); color: #fff;}
+
+        /* --- زر الصعود للأعلى --- */
+        #scrollTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: #d4ac0d;
             color: white;
-            padding: 5px 10px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            z-index: 10;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: 0.3s;
         }
+        #scrollTopBtn:hover { background-color: #b7950b; transform: scale(1.1); }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-sm">
+    <div class="sticky-sidebar animate__animated animate__fadeInRight">
+        <div class="sidebar-title">🔥 الأكثر طلباً</div>
+        
+        <a href="#products" class="mini-product">
+            <img src="sirajplan.jpg" class="mini-img" alt="الخطة الكاملة">
+            <div class="mini-info">
+                <h6>باقة السراج الكاملة</h6>
+                <span>$6.00 (عرض خاص)</span>
+            </div>
+        </a>
+
+        <a href="#products" class="mini-product">
+            <img src="level1.jpg" class="mini-img" alt="المستوى الأول">
+            <div class="mini-info">
+                <h6>المستوى الأول</h6>
+                <span>$4.00</span>
+            </div>
+        </a>
+
+        <a href="#products" class="mini-product">
+            <img src="level2.jpg" class="mini-img" alt="المستوى الثاني">
+            <div class="mini-info">
+                <h6>المستوى الثاني</h6>
+                <span>$4.00</span>
+            </div>
+        </a>
+
+        <div style="background: #fdf2ce; padding: 10px; border-radius: 8px; font-size: 0.8rem; text-align: center; margin-top: 15px; border: 1px dashed #d4ac0d;">
+            <strong>هل تحتاج تصميم خاص؟</strong><br>
+            يمكنك طلب خطة مخصصة لك الآن!
+            <a href="#services" style="display: block; margin-top: 5px; color: #b7950b; font-weight: bold;">اطلب من هنا</a>
+        </div>
+    </div>
+
+    <button onclick="topFunction()" id="scrollTopBtn" title="الرجوع للأعلى"><i class="fas fa-arrow-up"></i></button>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#"><i class="fas fa-book-open me-2"></i> مُساعِد | Musacid</a>
+            <a class="navbar-brand fw-bold text-warning" href="#"><i class="fas fa-book-reader me-2"></i> مُساعِد</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" href="#">الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products">منتجاتنا</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">طلب خدمة</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">تواصل معنا</a></li>
+                </ul>
+                <a href="https://wa.me/966548137612?text=السلام%20عليكم،%20أرغب%20في%20الاستفسار%20عن%20خطط%20السراج" target="_blank" class="btn btn-outline-warning btn-sm rounded-pill ms-2">
+                    <i class="fab fa-whatsapp"></i> واتساب
+                </a>
+            </div>
         </div>
     </nav>
 
-    <section class="hero-section">
+    <header class="hero-section">
         <div class="container">
-            <h1 class="display-4 fw-bold mb-3">خطة السراج المكثفة</h1>
-            <p class="lead mb-4 opacity-75">خطواتك اليومية الصغيرة تصنع إنجازك العظيم بعد 90 يوماً</p>
-            <a href="#products" class="btn btn-light btn-lg rounded-pill px-5 fw-bold text-dark shadow">تصفح الخطط</a>
-        </div>
-    </section>
+            <div class="row align-items-center">
+                
+                <div class="col-md-3 mb-4 mb-md-0 order-md-1">
+                    <div class="updates-box">
+                        <small class="text-white-50 d-block mb-2" style="font-size: 0.7rem;">آخر التحديثات</small>
+                        <div id="updates-wrapper">
+                            <div class="update-item active">
+                                <img src="level1.jpg" class="update-img" alt="جديد">
+                                <h6 class="m-0" style="font-size: 0.9rem;">إطلاق المستوى الأول</h6>
+                            </div>
+                            <div class="update-item">
+                                <img src="level2.jpg" class="update-img" alt="جديد">
+                                <h6 class="m-0" style="font-size: 0.9rem;">ختم القرآن متاح الآن</h6>
+                            </div>
+                             <div class="update-item">
+                                <img src="sirajplan.jpg" class="update-img" alt="جديد">
+                                <h6 class="m-0" style="font-size: 0.9rem;">عرض الباقة الكاملة</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-    <section id="products" class="container my-5 py-5">
+                <div class="col-md-6 text-center order-md-2 animate__animated animate__fadeInUp">
+                    <h1 class="display-5 fw-bold mb-3 text-warning">خطط إبداعية لحفظ القرآن وتطوير الذات</h1>
+                    <p class="lead mb-4 opacity-75">نصمم لك الطريق.. لتمشي فيه بثبات وإتقان</p>
+                    <a href="#products" class="btn btn-light btn-lg rounded-pill px-5 fw-bold shadow text-dark">
+                        تصفح الخطط <i class="fas fa-arrow-down ms-2"></i>
+                    </a>
+                </div>
+
+                <div class="col-md-3 mt-4 mt-md-0 order-md-3 info-box">
+                    <div class="live-clock" id="clock">00:00:00</div>
+                    <div class="text-white-50" id="date-display" style="font-size: 0.8rem; margin-bottom: 10px;"></div>
+                    <div class="quote-container">
+                        <i class="fas fa-quote-right text-warning ms-2"></i>
+                        <span id="quote-text" class="animate__animated">خطواتك الصغيرة تصنع إنجازك العظيم.</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <section id="products" class="container my-5 pt-5">
         <div class="text-center mb-5">
-            <h2 class="fw-bold display-6">اختر باقتك المناسبة</h2>
-            <p class="text-muted">جداول مصممة بعناية لتبدأ رحلة الحفظ بثبات</p>
+            <h2 class="fw-bold display-6">باقاتنا المميزة</h2>
+            <div style="width: 80px; height: 3px; background: #d4ac0d; margin: 10px auto;"></div>
         </div>
 
         <div class="row g-4 justify-content-center">
@@ -125,21 +329,11 @@
             <div class="col-lg-4 col-md-6">
                 <div class="product-card">
                     <img src="level1.jpg" class="card-img-top" alt="المستوى الأول">
-                    <div class="card-body p-4">
-                        <h4 class="card-title fw-bold">المستوى الأول (15 جزء)</h4>
-                        <p class="text-muted small">بداية الرحلة من الفاتحة إلى الكهف</p>
-                        <div class="price-tag">$4.00</div>
-                        
-                        <ul class="feature-list">
-                            <li><i class="fas fa-check-circle"></i> خطة لمدة 3 أشهر (12 أسبوع)</li>
-                            <li><i class="fas fa-check-circle"></i> حفظ يومي: 5 صفحات</li>
-                            <li><i class="fas fa-check-circle"></i> نظام مراجعة مكثف (قريب وبعيد)</li>
-                            <li><i class="fas fa-file-pdf"></i> ملف PDF تفاعلي جاهز للطباعة</li>
-                        </ul>
-                        
-                        <a href="https://musacid.gumroad.com/l/bdotqz" target="_blank" class="btn-buy">
-                            <i class="fas fa-shopping-cart me-2"></i> اشترِ الآن
-                        </a>
+                    <div class="card-body p-4 text-center">
+                        <h4 class="fw-bold">المستوى الأول</h4>
+                        <p class="text-muted small">من الفاتحة إلى الكهف (15 جزء)</p>
+                        <h3 class="text-success fw-bold my-3">$4.00</h3>
+                        <a href="https://musacid.gumroad.com/l/bdotqz" target="_blank" class="btn-buy">شراء الآن</a>
                     </div>
                 </div>
             </div>
@@ -147,44 +341,24 @@
             <div class="col-lg-4 col-md-6">
                 <div class="product-card">
                     <img src="level2.jpg" class="card-img-top" alt="المستوى الثاني">
-                    <div class="card-body p-4">
-                        <h4 class="card-title fw-bold">المستوى الثاني (الختم)</h4>
-                        <p class="text-muted small">من سورة الكهف إلى سورة الناس</p>
-                        <div class="price-tag">$4.00</div>
-                        
-                        <ul class="feature-list">
-                            <li><i class="fas fa-check-circle"></i> إكمال الـ 15 جزءاً المتبقية</li>
-                            <li><i class="fas fa-check-circle"></i> جدول متابعة دقيق للإنجاز</li>
-                            <li><i class="fas fa-check-circle"></i> نصائح لتثبيت الحفظ والمراجعة</li>
-                            <li><i class="fas fa-award"></i> الوصول للحظة الختم العظيمة</li>
-                        </ul>
-                        
-                        <a href="https://musacid.gumroad.com/l/bdotqz" target="_blank" class="btn-buy">
-                            <i class="fas fa-shopping-cart me-2"></i> اشترِ الآن
-                        </a>
+                    <div class="card-body p-4 text-center">
+                        <h4 class="fw-bold">المستوى الثاني</h4>
+                        <p class="text-muted small">من الكهف إلى الناس (الختم)</p>
+                        <h3 class="text-success fw-bold my-3">$4.00</h3>
+                        <a href="https://musacid.gumroad.com/l/bdotqz" target="_blank" class="btn-buy">شراء الآن</a>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="product-card border border-2 border-warning position-relative">
-                    <span class="badge-offer">الأكثر توفيراً ✨</span>
+                <div class="product-card border border-warning">
+                    <div class="position-absolute top-0 start-0 bg-danger text-white px-3 py-1 rounded-bottom-end fw-bold">توفير!</div>
                     <img src="sirajplan.jpg" class="card-img-top" alt="الخطة الكاملة">
-                    <div class="card-body p-4">
-                        <h4 class="card-title fw-bold">الخطة الكاملة (القرآن كاملاً)</h4>
-                        <p class="text-muted small">احصل على المستويين معاً بسعر مخفض</p>
-                        <div class="price-tag">$6.00 <span class="old-price">$8.00</span></div>
-                        
-                        <ul class="feature-list">
-                            <li><i class="fas fa-star"></i> توفير 25% من السعر الأصلي</li>
-                            <li><i class="fas fa-check-double"></i> تشمل المستوى الأول + الثاني</li>
-                            <li><i class="fas fa-calendar-alt"></i> خطة شاملة لمدة 6 أشهر</li>
-                            <li><i class="fas fa-gift"></i> تصميم فاخر وعالي الدقة</li>
-                        </ul>
-                        
-                        <a href="https://musacid.gumroad.com/l/bdotqz" target="_blank" class="btn-buy">
-                            <i class="fas fa-shopping-bag me-2"></i> احصل على العرض
-                        </a>
+                    <div class="card-body p-4 text-center">
+                        <h4 class="fw-bold">الخطة الكاملة</h4>
+                        <p class="text-muted small">المصحف كاملاً (30 جزء)</p>
+                        <h3 class="text-success fw-bold my-3">$6.00 <span class="text-muted fs-6 text-decoration-line-through">$8.00</span></h3>
+                        <a href="https://musacid.gumroad.com/l/bdotqz" target="_blank" class="btn-buy">اطلب العرض</a>
                     </div>
                 </div>
             </div>
@@ -192,16 +366,175 @@
         </div>
     </section>
 
-    <footer class="bg-dark text-white text-center py-4">
-        <div class="container">
-            <p class="mb-2">جميع الحقوق محفوظة &copy; 2025 | مُساعِد</p>
-            <small class="text-white-50">تم التصميم والتطوير بواسطة عبدالرشيد سعيد</small>
-            <div class="mt-3">
-                <a href="mailto:musacidcex@gmail.com" class="text-white mx-2"><i class="fas fa-envelope"></i></a>
+    <section id="services" class="container">
+        <div class="service-section">
+            <div class="row">
+                <div class="col-md-5 mb-4 text-center text-md-end">
+                    <h3 class="fw-bold mb-3">اطلب تصميم خطتك الخاصة</h3>
+                    <p class="text-muted">لم تجد ما تبحث عنه؟ نحن هنا لخدمتك.</p>
+                    <ul class="list-unstyled mt-4">
+                        <li class="mb-2"><i class="fas fa-check text-warning ms-2"></i> تصميم خطط مراجعة مخصصة</li>
+                        <li class="mb-2"><i class="fas fa-check text-warning ms-2"></i> جداول متابعة للطلاب</li>
+                        <li class="mb-2"><i class="fas fa-check text-warning ms-2"></i> تعديل على الخطط الحالية</li>
+                    </ul>
+                </div>
+                <div class="col-md-7">
+                    <form onsubmit="sendServiceEmail(event)">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">الاسم الكريم</label>
+                                <input type="text" class="form-control" id="clientName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">رقم التواصل (واتس)</label>
+                                <input type="tel" class="form-control" id="clientPhone" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">نوع الخدمة</label>
+                                <select class="form-select" id="serviceType">
+                                    <option value="تصميم خطة جديدة">طلب تصميم خطة جديدة</option>
+                                    <option value="تعديل خطة سابقة">طلب تعديل خطة سابقة</option>
+                                    <option value="اقتراح أو ملاحظة">لدي اقتراح أو ملاحظة</option>
+                                    <option value="طلب خاص">أكتب طلبي بنفسي</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">تفاصيل الطلب / الرسالة</label>
+                                <textarea class="form-control" id="messageBody" rows="4" placeholder="اكتب تفاصيل ما تريد هنا..." required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-dark w-100 py-2 fw-bold">
+                                    <i class="fas fa-paper-plane me-2"></i> إرسال الطلب
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container pb-4">
+            <div class="row">
+                <div class="col-md-4 mb-4 text-center text-md-end">
+                    <h5 class="text-warning">مساعد | Musacid</h5>
+                    <p class="small">منصة تهتم بتقديم حلول إبداعية وخطط مدروسة لحفظ كتاب الله وتطوير المهارات الشخصية.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4 text-center">
+                    <h5>روابط سريعة</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">الرئيسية</a></li>
+                        <li class="mb-2"><a href="#products">منتجاتنا</a></li>
+                        <li class="mb-2"><a href="#services">اطلب تصميم</a></li>
+                        <li class="mb-2"><a href="#contact">تواصل معنا</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 mb-4 text-center text-md-start">
+                    <h5>اشترك في القائمة البريدية</h5>
+                    <p class="small">ليصلك كل جديد من الخطط والعروض.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="بريدك الإلكتروني">
+                        <button class="btn btn-warning" type="button">اشتراك</button>
+                    </div>
+                    <div class="mt-3 small text-white-50">
+                        <i class="fas fa-envelope me-2"></i> musacidcex@gmail.com<br>
+                        <i class="fab fa-whatsapp me-2"></i> +966548137612
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="border-secondary my-4">
+            <div class="text-center small">
+                جميع الحقوق محفوظة &copy; 2025 | تم التصميم والتطوير بواسطة <strong>عبدالرشيد آل عدني</strong>
             </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // 1. وظيفة الساعة والتاريخ
+        function updateTime() {
+            const now = new Date();
+            // الساعة
+            document.getElementById('clock').innerText = now.toLocaleTimeString('en-US', { hour12: false });
+            // التاريخ
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('date-display').innerText = now.toLocaleDateString('ar-SA', options);
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // 2. وظيفة تبديل العبارات التحفيزية (يسار الهيدر)
+        const quotes = [
+            "خطواتك الصغيرة تصنع إنجازك العظيم.",
+            "القرآن مشروع العمر، فلا تستعجل الثمرة.",
+            "ابدأ اليوم، فالتسويف سارق الأعمار.",
+            "رافق القرآن.. يسعدك في الدنيا والآخرة."
+        ];
+        let quoteIndex = 0;
+        function rotateQuotes() {
+            const quoteElement = document.getElementById('quote-text');
+            quoteElement.classList.remove('animate__fadeIn');
+            quoteElement.classList.add('animate__fadeOut');
+            
+            setTimeout(() => {
+                quoteIndex = (quoteIndex + 1) % quotes.length;
+                quoteElement.innerText = quotes[quoteIndex];
+                quoteElement.classList.remove('animate__fadeOut');
+                quoteElement.classList.add('animate__fadeIn');
+            }, 500);
+        }
+        setInterval(rotateQuotes, 4000);
+
+        // 3. وظيفة شريط التحديثات (يمين الهيدر)
+        let updateIndex = 0;
+        const updates = document.querySelectorAll('.update-item');
+        function rotateUpdates() {
+            updates.forEach(item => item.style.display = 'none');
+            updates[updateIndex].style.display = 'block';
+            updateIndex = (updateIndex + 1) % updates.length;
+        }
+        setInterval(rotateUpdates, 3000);
+        rotateUpdates(); // تشغيل فوري
+
+        // 4. وظيفة إرسال نموذج الطلب للإيميل
+        function sendServiceEmail(e) {
+            e.preventDefault();
+            const name = document.getElementById('clientName').value;
+            const phone = document.getElementById('clientPhone').value;
+            const type = document.getElementById('serviceType').value;
+            const msg = document.getElementById('messageBody').value;
+            
+            const subject = `طلب جديد من الموقع: ${type}`;
+            const body = `الاسم: ${name}%0D%0Aرقم الهاتف: ${phone}%0D%0Aنوع الطلب: ${type}%0D%0A%0D%0Aتفاصيل الرسالة:%0D%0A${msg}`;
+            
+            window.location.href = `mailto:musacidcex@gmail.com?subject=${subject}&body=${body}`;
+        }
+
+        // 5. زر الصعود للأعلى
+        const mybutton = document.getElementById("scrollTopBtn");
+        window.onscroll = function() {scrollFunction()};
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
 </body>
 </html>
