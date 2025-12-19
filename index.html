@@ -48,8 +48,8 @@
         
         /* --- القائمة الجانبية الذكية (داخل العمود) --- */
         .sidebar-wrapper {
-            position: sticky; /* السر هنا: تلتصق بالعمود */
-            top: 100px; /* تبتعد عن سقف المتصفح 100 بكسل */
+            position: sticky; 
+            top: 100px;
             background: white;
             padding: 20px;
             border-radius: 15px;
@@ -85,7 +85,7 @@
         .service-section { background-color: white; border-radius: 20px; padding: 40px; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
         .form-control, .form-select { background-color: #f9f9f9; border: 1px solid #eee; padding: 12px; border-radius: 10px; }
         .form-control:focus { border-color: #d4ac0d; box-shadow: 0 0 0 0.2rem rgba(212, 172, 13, 0.25); }
-        .hidden-field { display: none; animation: fadeIn 0.5s; } /* كلاس لإخفاء الحقول */
+        .hidden-field { display: none; animation: fadeIn 0.5s; }
 
         /* --- الفوتر --- */
         footer { background-color: #1a1a1a; color: #aaa; padding-top: 50px; margin-top: 80px; border-top: 5px solid #d4ac0d; }
@@ -188,7 +188,7 @@
                     <div class="col-md-6 col-xl-4">
                         <div class="product-card border border-warning">
                             <div class="position-absolute top-0 start-0 bg-danger text-white px-3 py-1 fw-bold" style="border-bottom-right-radius: 10px;">توفير!</div>
-                            <img src="sirajplan.jpg" class="card-img-top" alt="الخطة الكاملة">
+                            <img src="sirajplan.png" class="card-img-top" alt="الخطة الكاملة">
                             <div class="card-body p-4 text-center">
                                 <h5 class="fw-bold">خطة السراج - النسخة الكاملة</h5>
                                 <p class="text-muted small">المصحف كاملاً (30 جزء)</p>
@@ -268,7 +268,7 @@
                     <div class="sidebar-title">🔥 الأكثر طلباً</div>
                     
                     <a href="https://musacid.gumroad.com/l/bdotqz" target="_blank" class="mini-product">
-                        <img src="sirajplan.jpg" class="mini-img" alt="الخطة الكاملة">
+                        <img src="sirajplan.png" class="mini-img" alt="الخطة الكاملة">
                         <div class="mini-info">
                             <h6>خطة السراج (كاملة)</h6>
                             <span>$6.00 (عرض خاص)</span>
@@ -298,7 +298,8 @@
                 </div>
             </div>
 
-        </div> </div>
+        </div>
+    </div>
 
     <footer id="contact">
         <div class="container pb-4">
@@ -321,7 +322,12 @@
                     </ul>
                 </div>
                 <div class="col-md-4 mb-4 text-center text-md-start">
-                    <h5>تواصل معنا</h5>
+                    <h5>اشترك في القائمة البريدية</h5>
+                    <p class="small">ليصلك كل جديد من الخطط والعروض.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="بريدك الإلكتروني">
+                        <button class="btn btn-warning" type="button">اشتراك</button>
+                    </div>
                     <div class="mt-3 small text-white-50">
                         <i class="fas fa-envelope me-2"></i> musacidcex@gmail.com<br>
                         <i class="fab fa-whatsapp me-2"></i> +966548137612
@@ -335,49 +341,30 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // 1. منطق النموذج الذكي (إظهار وإخفاء الحقول)
         function toggleServiceFields() {
             const type = document.getElementById('serviceType').value;
             const modifyDiv = document.getElementById('modifyOptions');
             const newPlanDiv = document.getElementById('newPlanOptions');
-
-            // إخفاء الجميع أولاً
             modifyDiv.style.display = 'none';
             newPlanDiv.style.display = 'none';
-
-            // إظهار المطلوب
-            if (type === 'تعديل خطة سابقة') {
-                modifyDiv.style.display = 'block';
-            } else if (type === 'تصميم خطة جديدة') {
-                newPlanDiv.style.display = 'block';
-            }
+            if (type === 'تعديل خطة سابقة') { modifyDiv.style.display = 'block'; }
+            else if (type === 'تصميم خطة جديدة') { newPlanDiv.style.display = 'block'; }
         }
 
-        // 2. إرسال الإيميل بالبيانات المفصلة
         function sendServiceEmail(e) {
             e.preventDefault();
             const name = document.getElementById('clientName').value;
             const phone = document.getElementById('clientPhone').value;
             const type = document.getElementById('serviceType').value;
             const msg = document.getElementById('messageBody').value;
-            
             let extraInfo = "";
-            
-            if (type === 'تعديل خطة سابقة') {
-                const selectedPlan = document.getElementById('modifySelection').value;
-                extraInfo = `الخطة المراد تعديلها: ${selectedPlan}`;
-            } else if (type === 'تصميم خطة جديدة') {
-                const selectedNewType = document.getElementById('newPlanSelection').value;
-                extraInfo = `نوع الخطة المقترحة: ${selectedNewType}`;
-            }
-
+            if (type === 'تعديل خطة سابقة') { extraInfo = `الخطة المراد تعديلها: ${document.getElementById('modifySelection').value}`; }
+            else if (type === 'تصميم خطة جديدة') { extraInfo = `نوع الخطة المقترحة: ${document.getElementById('newPlanSelection').value}`; }
             const subject = `طلب جديد: ${type}`;
             const body = `الاسم: ${name}%0D%0Aرقم الهاتف: ${phone}%0D%0Aنوع الطلب: ${type}%0D%0A${extraInfo}%0D%0A%0D%0Aتفاصيل الرسالة:%0D%0A${msg}`;
-            
             window.location.href = `mailto:musacidcex@gmail.com?subject=${subject}&body=${body}`;
         }
 
-        // 3. الساعة والتحفيز
         function updateTime() {
             const now = new Date();
             document.getElementById('clock').innerText = now.toLocaleTimeString('en-US', { hour12: false });
@@ -399,7 +386,6 @@
         }
         setInterval(rotateQuotes, 4000); rotateQuotes();
 
-        // 4. التحديثات
         let updateIndex = 0;
         const updates = document.querySelectorAll('.update-item');
         function rotateUpdates() {
@@ -409,14 +395,10 @@
         }
         setInterval(rotateUpdates, 3000); rotateUpdates();
 
-        // 5. زر الصعود
         const mybutton = document.getElementById("scrollTopBtn");
         window.onscroll = function() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                mybutton.style.display = "block";
-            } else {
-                mybutton.style.display = "none";
-            }
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) { mybutton.style.display = "block"; } 
+            else { mybutton.style.display = "none"; }
         };
         function topFunction() { document.body.scrollTop = 0; document.documentElement.scrollTop = 0; }
     </script>
