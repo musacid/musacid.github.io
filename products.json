@@ -1,0 +1,47 @@
+[
+  {
+    "id": "siraj-l1",
+    "title": "خطة السراج المكثفة – المستوى الأول",
+    "subtitle": "3 أشهر | 15 جزءًا | بداية قوية",
+    "price_old": 8,
+    "price": 4,
+    "image": "assets/level1.jpg",
+    "badge": "الأكثر مبيعًا",
+    "checkout_url": "https://musacid.gumroad.com/l/bdotqz",
+    "tags": [
+      "حفظ",
+      "3 أشهر",
+      "مكثفة"
+    ]
+  },
+  {
+    "id": "siraj-l2",
+    "title": "خطة السراج المكثفة – المستوى الثاني",
+    "subtitle": "من ص 301 إلى الختمة | 12 أسبوعًا",
+    "price_old": 8,
+    "price": 4,
+    "image": "assets/level2.jpg",
+    "badge": "جديد",
+    "checkout_url": "https://musacid.gumroad.com/l/bdotqz",
+    "tags": [
+      "إكمال",
+      "12 أسبوعًا",
+      "مكثفة"
+    ]
+  },
+  {
+    "id": "siraj-bundle",
+    "title": "خطة السراج الكاملة (المستوى 1 + 2)",
+    "subtitle": "الباقة الكاملة | وفر أكثر",
+    "price_old": 8,
+    "price": 6,
+    "image": "assets/cover.jpg",
+    "badge": "عرض",
+    "checkout_url": "https://musacid.gumroad.com/l/bdotqz",
+    "tags": [
+      "باقة",
+      "خصم",
+      "كاملة"
+    ]
+  }
+]

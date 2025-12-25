@@ -1,1 +1,363 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>خطط السراج | خطط إبداعية لحفظ القرآن وتطوير الذات</title>
+  <meta name="description" content="متجر خطط رقمية فاخرة لحفظ القرآن وتطوير الذات. نحول الأهداف الكبيرة إلى خطوات صغيرة قابلة للتنفيذ." />
+  <meta name="theme-color" content="#0b0910"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/cover_square.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="brand-text">
+          <div class="brand-title">خطط السراج</div>
+          <div class="brand-sub">خطط إبداعية لحفظ القرآن وتطوير الذات</div>
+        </div>
+      </div>
 
+      <nav class="nav">
+        <a class="nav-link" href="#home">الرئيسية</a>
+        <a class="nav-link" href="#products">منتجاتنا</a>
+        <a class="nav-link" href="#about">من نحن</a>
+        <a class="nav-link" href="#service">اطلب خدمة</a>
+        <a class="nav-link" href="#contact">تواصل معنا</a>
+      </nav>
+
+      <div class="actions">
+        <button class="icon-btn" id="cartBtn" title="السلة">
+          <span class="icon">🛒</span>
+          <span class="badge" id="cartCount">0</span>
+        </button>
+        <button class="btn" id="serviceBtn">اطلب خدمة</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="hero" id="home">
+    <div class="container hero-grid">
+      <!-- Left: time + date + quote -->
+      <section class="hero-left">
+        <div class="glass card">
+          <div class="time-row">
+            <div class="time-block">
+              <div class="kicker">الوقت الآن</div>
+              <div class="time" id="clock">--:--:--</div>
+            </div>
+            <div class="date-block">
+              <div class="kicker">اليوم والتاريخ</div>
+              <div class="date" id="today">--</div>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="quote-title">تحفيز اليوم</div>
+          <div class="quote" id="quote">…</div>
+          <div class="quote-mini">تتغير العبارة كل 5 ثوانٍ</div>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn gold" href="#products">تصفح منتجاتنا</a>
+          <button class="btn outline" id="serviceBtn2">طلب خدمة مخصصة</button>
+        </div>
+      </section>
+
+      <!-- Center: headline + marquee -->
+      <section class="hero-center">
+        <div class="headline">
+          <h1>خطط فاخرة… تُحوِّل حلمك إلى عادة</h1>
+          <p>تصميمات عملية، جداول واضحة، وزخرفة أنيقة — لتعيش مع القرآن خطوة بخطوة.</p>
+        </div>
+
+        <div class="marquee-wrap" aria-label="عناوين الخطط">
+          <div class="marquee" id="marquee">
+            <div class="marquee-track" id="marqueeTrack"></div>
+          </div>
+        </div>
+
+        <div class="hero-cards">
+          <div class="mini-card">
+            <div class="mini-icon">✨</div>
+            <div>
+              <div class="mini-title">تصميم ذهبي فاخر</div>
+              <div class="mini-text">هوية بصرية قريبة من روح خططك.</div>
+            </div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-icon">📄</div>
+            <div>
+              <div class="mini-title">PDF جاهز للطباعة</div>
+              <div class="mini-text">نسق واضح مع صفحات إرشادية وجداول.</div>
+            </div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-icon">🎯</div>
+            <div>
+              <div class="mini-title">نتائج قابلة للقياس</div>
+              <div class="mini-text">متابعة يومية وعلامة إنجاز.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right: latest products carousel -->
+      <aside class="hero-right">
+        <div class="glass card">
+          <div class="side-title">أحدث المنتجات</div>
+          <div class="carousel" id="carousel">
+            <div class="carousel-inner" id="carouselInner"></div>
+            <div class="carousel-controls">
+              <button class="chip" id="prevSlide">السابق</button>
+              <button class="chip" id="nextSlide">التالي</button>
+            </div>
+          </div>
+          <div class="hint">يتنقل تلقائيًا — ويمكنك التحكم بالأزرار</div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="products">
+      <div class="container">
+        <div class="section-head">
+          <h2>منتجاتنا</h2>
+          <p>اختر الخطة المناسبة، وأضفها للسلة — ثم أكمل الشراء بأمان عبر Gumroad.</p>
+        </div>
+
+        <div class="layout">
+          <div class="grid" id="productsGrid"></div>
+
+          <aside class="sidebar">
+            <div class="glass card">
+              <div class="side-title">الأكثر شيوعًا</div>
+              <div class="popular" id="popularList"></div>
+              <div class="divider"></div>
+              <button class="btn gold full" id="serviceBtn3">اطلب خدمة الآن</button>
+              <div class="micro">لم تجد ما تريده؟ اطلب تصميمًا مخصصًا.</div>
+            </div>
+
+            <div class="glass card mt">
+              <div class="side-title">نماذج من داخل الخطة</div>
+              <div class="samples">
+                <img src="assets/guide.jpg" alt="نموذج صفحة الإرشادات" loading="lazy"/>
+                <img src="assets/week.jpg" alt="نموذج من الأسابيع" loading="lazy"/>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head">
+          <h2>من نحن</h2>
+          <p>نحوِّل الأهداف الكبيرة إلى خطوات صغيرة قابلة للتنفيذ — بتصميمات عملية وأنيقة.</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="glass card">
+            <h3>رسالتنا</h3>
+            <p>
+              صناعة خطط رقمية تساعدك على الثبات والاستمرارية، وتبسيط الطريق نحو الإنجاز.
+              نركز على الوضوح، والتحفيز، وسهولة الاستخدام، مع هوية بصرية فاخرة.
+            </p>
+            <div class="about-actions">
+              <a class="btn gold" href="#products">تصفح منتجاتنا</a>
+              <button class="btn outline" id="serviceBtn4">اطلب خدمة</button>
+            </div>
+          </div>
+
+          <div class="glass card">
+            <h3>ماذا نقدم؟</h3>
+            <ul class="check">
+              <li>خطط حفظ القرآن (مستويات وباقات).</li>
+              <li>خطط مراجعة وتثبيت.</li>
+              <li>خطط تنظيم الوقت وتطوير الذات.</li>
+              <li>تعديل خطة موجودة أو تصميم جديد حسب احتياجك.</li>
+            </ul>
+          </div>
+
+          <div class="glass card">
+            <h3>لماذا خطط السراج؟</h3>
+            <ul class="check">
+              <li>مخرجات جاهزة للطباعة ومناسبة للمشاركة.</li>
+              <li>جداول واضحة + مساحات للتتبع والملاحظات.</li>
+              <li>تحفيز مستمر يحافظ على الزخم.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="service">
+      <div class="container">
+        <div class="section-head">
+          <h2>اطلب خدمة</h2>
+          <p class="callout">لم تجد ما تريده؟ اطلب من هنا — وسنعود لك بأفضل اقتراح.</p>
+        </div>
+
+        <div class="glass card form-card">
+          <form id="serviceForm" action="https://formsubmit.co/musacidcex@gmail.com" method="POST">
+            <!-- FormSubmit settings -->
+            <input type="hidden" name="_subject" value="طلب خدمة جديد من musacid.me" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_next" value="https://musacid.me/#service" />
+
+            <div class="form-grid">
+              <label>
+                <span>الاسم</span>
+                <input name="name" required placeholder="اكتب اسمك" />
+              </label>
+              <label>
+                <span>وسيلة التواصل</span>
+                <input name="contact" required placeholder="واتساب أو بريد" />
+              </label>
+
+              <label class="full">
+                <span>نوع الطلب</span>
+                <select name="request_type" id="requestType" required>
+                  <option value="" selected disabled>اختر…</option>
+                  <option value="تعديل خطة موجودة">تعديل خطة موجودة</option>
+                  <option value="طلب تصميم خطة جديدة">طلب تصميم خطة جديدة</option>
+                  <option value="اقتراح أو ملاحظة">اقتراح أو ملاحظة</option>
+                  <option value="أخرى">أخرى</option>
+                </select>
+              </label>
+
+              <label class="full" id="existingPlanWrap" style="display:none">
+                <span>اختر الخطة المراد تعديلها</span>
+                <select name="existing_plan" id="existingPlan">
+                  <option value="" selected disabled>اختر…</option>
+                </select>
+              </label>
+
+              <label class="full" id="newPlanWrap" style="display:none">
+                <span>نوع الخطة المطلوبة</span>
+                <select name="new_plan_type" id="newPlanType">
+                  <option value="" selected disabled>اختر…</option>
+                  <option value="خطط حفظ القرآن">خطط حفظ القرآن</option>
+                  <option value="مراجعة القرآن">مراجعة القرآن</option>
+                  <option value="تنظيم وقت">تنظيم وقت</option>
+                  <option value="أخرى">أخرى</option>
+                </select>
+              </label>
+
+              <label class="full">
+                <span>تفاصيل الطلب</span>
+                <textarea name="details" rows="5" required placeholder="اكتب تفاصيلك هنا…"></textarea>
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn gold" type="submit">إرسال الطلب</button>
+              <button class="btn outline" type="button" id="sendWhatsApp">إرسال نفس الطلب عبر واتساب</button>
+              <div class="status" id="formStatus" aria-live="polite"></div>
+            </div>
+
+            <p class="note">
+              * سيتم إرسال الطلب إلى بريدنا مباشرة. زر واتساب يفتح رسالة جاهزة لتسهيل التواصل.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-head">
+          <h2>تواصل معنا</h2>
+          <p>اختر الطريقة الأسهل — بريد أو واتساب برسالة جاهزة.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="glass card">
+            <div class="contact-title">بريد إلكتروني</div>
+            <a class="btn gold full" href="mailto:musacidcex@gmail.com?subject=استفسار من musacid.me&body=السلام عليكم،%0D%0A">إرسال بريد الآن</a>
+            <div class="micro">musacidcex@gmail.com</div>
+          </div>
+
+          <div class="glass card">
+            <div class="contact-title">واتساب</div>
+            <a class="btn gold full" target="_blank" rel="noreferrer" href="https://wa.me/966548137612?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D8%8C%20%D9%84%D8%AF%D9%8A%20%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%A8%D8%AE%D8%B5%D9%88%D8%B5%20%D8%AE%D8%B7%D8%B7%D9%83%D9%85%20%D8%A7%D9%84%D8%B1%D9%82%D9%85%D9%8A%D8%A9%20...">مراسلة واتساب</a>
+            <div class="micro">00966548137612</div>
+          </div>
+
+          <div class="glass card">
+            <div class="contact-title">روابطنا</div>
+            <div class="socials">
+              <a class="chip" href="#home">الرئيسية</a>
+              <a class="chip" href="#products">المنتجات</a>
+              <a class="chip" href="#service">طلب خدمة</a>
+            </div>
+            <div class="micro">أضف روابط السوشيال هنا لاحقًا بسهولة.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="foot-left">
+        <div class="foot-title">اشترك بالبريد</div>
+        <form id="subscribeForm" class="subscribe">
+          <input id="subscribeEmail" type="email" required placeholder="اكتب بريدك الإلكتروني" />
+          <button class="btn gold" type="submit">اشتراك</button>
+        </form>
+        <div class="micro" id="subscribeStatus"></div>
+      </div>
+
+      <div class="foot-center">
+        <div class="foot-title">عن خطط السراج</div>
+        <div class="micro">
+          نحول الأهداف الكبيرة إلى خطوات صغيرة قابلة للتنفيذ — مع تصميمات عملية وتحفيزية.
+        </div>
+        <div class="social-row">
+          <a class="icon-chip" href="mailto:musacidcex@gmail.com" title="Email">✉️</a>
+          <a class="icon-chip" target="_blank" rel="noreferrer" href="https://wa.me/966548137612" title="WhatsApp">💬</a>
+        </div>
+      </div>
+
+      <div class="foot-right">
+        <button class="to-top" id="toTop" title="العودة للأعلى">⬆</button>
+        <div class="micro">تم التصميم — عبدالرشيد</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Drawer -->
+  <div class="drawer" id="cartDrawer" aria-hidden="true">
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="السلة">
+      <div class="drawer-head">
+        <div class="drawer-title">سلة المشتريات</div>
+        <button class="icon-btn" id="closeCart" title="إغلاق">✕</button>
+      </div>
+      <div class="drawer-body">
+        <div id="cartItems"></div>
+        <div class="cart-summary">
+          <div>الإجمالي</div>
+          <div class="total" id="cartTotal">$0</div>
+        </div>
+        <div class="cart-actions">
+          <button class="btn outline full" id="clearCart">تفريغ السلة</button>
+          <div class="micro">الدفع يتم عبر Gumroad لكل منتج (زر شراء داخل البطاقة).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gumroad overlay for fancy checkout -->
+  <script src="https://gumroad.com/js/gumroad.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
