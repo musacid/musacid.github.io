@@ -1,363 +1,497 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>خطط السراج | خطط إبداعية لحفظ القرآن وتطوير الذات</title>
-  <meta name="description" content="متجر خطط رقمية فاخرة لحفظ القرآن وتطوير الذات. نحول الأهداف الكبيرة إلى خطوات صغيرة قابلة للتنفيذ." />
-  <meta name="theme-color" content="#0b0910"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="assets/cover_square.png" />
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="خطط إبداعية لحفظ القرآن وتطوير الذات - موقع مساعد">
+    <title>مساعد | Musacid - التخطيط والإنجاز</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        :root {
+            --primary-gold: #d4ac0d;
+            --dark-blue: #141e30;
+            --royal-blue: #0f2027; /* لون الناف بار الجديد */
+            --light-bg: #f4f7f6;
+        }
+
+        body { 
+            font-family: 'Tajawal', sans-serif; 
+            background-color: var(--light-bg);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* --- 1. القائمة العلوية (Navbar) بلون مميز --- */
+        .custom-navbar {
+            background: linear-gradient(to left, #000000, #434343); /* لون مختلف وفخم */
+            border-bottom: 3px solid var(--primary-gold);
+        }
+        .nav-link { color: #fff !important; transition: 0.3s; margin: 0 5px; }
+        .nav-link:hover { color: var(--primary-gold) !important; transform: translateY(-2px); }
+        .nav-link.active { color: var(--primary-gold) !important; font-weight: bold; }
+
+        /* --- 2. الهيدر والشريط العلوي --- */
+        .hero-section {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, #2c3e50 100%);
+            color: white;
+            padding: 0 0 80px; /* ألغينا البادينج العلوي عشان الشريط */
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* الشريط المتحرك (جديد) */
+        .planning-strip {
+            background: rgba(255,255,255,0.05);
+            height: 50px; /* الارتفاع المطلوب (حوالي 1.5 سم) */
+            width: 100%;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 60px; /* مسافة قبل المحتوى */
+        }
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .ticker {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+        }
+        .ticker-item {
+            display: inline-block;
+            padding: 0 2rem;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        .ticker-item i { color: var(--primary-gold); margin-left: 5px; }
+        
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(50%, 0, 0); } /* تحريك لليمين */
+        }
+
+        /* تنسيقات الهيدر الداخلية */
+        .updates-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            height: 250px; /* مربع */
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: 0.3s;
+        }
+        .updates-box:hover { transform: scale(1.02); border-color: var(--primary-gold); }
+        
+        .update-img-square {
+            width: 120px;
+            height: 120px;
+            border-radius: 15px;
+            object-fit: cover;
+            border: 3px solid var(--primary-gold);
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        /* تنسيقات الساعة والتحفيز (يسار) */
+        .info-panel {
+            text-align: left;
+            padding-right: 20px;
+            border-right: 2px solid var(--primary-gold);
+        }
+        .live-clock { font-family: monospace; font-size: 1.5rem; color: var(--primary-gold); text-shadow: 0 0 10px rgba(212, 172, 13, 0.5); }
+        .quote-card {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border-left: 4px solid var(--primary-gold);
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* --- بقية التنسيقات (السلة، المنتجات، الفوتر) كما هي --- */
+        .cart-sidebar {
+            position: fixed; top: 0; left: -400px; width: 350px; height: 100%;
+            background: white; box-shadow: 2px 0 15px rgba(0,0,0,0.2); z-index: 1050;
+            transition: 0.4s; padding: 20px; display: flex; flex-direction: column;
+        }
+        .cart-sidebar.active { left: 0; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1040; display: none; }
+        .overlay.active { display: block; }
+        
+        .product-card { border: none; border-radius: 15px; background: white; box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: 0.3s; overflow: hidden; height: 100%; }
+        .product-card:hover { transform: translateY(-10px); }
+        .card-img-top { height: 240px; object-fit: cover; }
+        
+        .badge-offer { position: absolute; top: 20px; right: 20px; background: #e74c3c; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; }
+        
+        .sidebar-wrapper { position: sticky; top: 100px; background: white; padding: 20px; border-radius: 15px; border: 1px solid #eee; }
+
+        footer { background-color: var(--dark-blue); color: #aaa; padding-top: 60px; margin-top: 80px; border-top: 5px solid var(--primary-gold); }
+        
+        #scrollTopBtn { display: none; position: fixed; bottom: 30px; left: 30px; z-index: 99; border: none; background-color: var(--primary-gold); color: white; padding: 15px; border-radius: 50%; cursor: pointer; }
+
+        /* --- تنسيق نافذة من نحن (Modal) --- */
+        .modal-content { border-radius: 20px; border: none; overflow: hidden; }
+        .modal-header { background: var(--dark-blue); color: white; border-bottom: 4px solid var(--primary-gold); }
+        .modal-body { background: #f9f9f9; padding: 40px; text-align: center; }
+        .feature-icon { width: 60px; height: 60px; background: #e8f0fe; color: var(--dark-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 15px; }
+
+    </style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="container topbar-inner">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div class="brand-text">
-          <div class="brand-title">خطط السراج</div>
-          <div class="brand-sub">خطط إبداعية لحفظ القرآن وتطوير الذات</div>
+
+    <button onclick="topFunction()" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
+    <div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
+    <div class="modal fade" id="aboutModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold"><i class="fas fa-info-circle me-2"></i> من نحن؟</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="icon" style="width: 80px; margin-bottom: 20px;">
+                    <h3 class="fw-bold mb-3" style="color: var(--dark-blue);">مُساعِد | Musacid</h3>
+                    <p class="lead text-muted mb-4">
+                        نحن منصة متخصصة في تقديم حلول <strong>التخطيط الاستراتيجي</strong> والبحوث العلمية، 
+                        نسخر خبراتنا لتصميم خطط إبداعية ومتقنة تساعدك في حفظ القرآن الكريم، تنظيم الوقت، وتطوير الذات.
+                    </p>
+                    <div class="row g-4 mt-2">
+                        <div class="col-md-4">
+                            <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                            <h6 class="fw-bold">تخطيط استراتيجي</h6>
+                            <p class="small text-muted">خطط مبنية على أسس علمية ومدروسة.</p>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature-icon"><i class="fas fa-palette"></i></div>
+                            <h6 class="fw-bold">تصميم إبداعي</h6>
+                            <p class="small text-muted">جداول ومطبوعات تفتح النفس للإنجاز.</p>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature-icon"><i class="fas fa-heart"></i></div>
+                            <h6 class="fw-bold">شغف بالإتقان</h6>
+                            <p class="small text-muted">نعمل بأعلى معايير الجودة لخدمتكم.</p>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <a href="#services" class="btn btn-warning fw-bold px-4 rounded-pill" data-bs-dismiss="modal">اطلب خطتك الخاصة</a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <nav class="nav">
-        <a class="nav-link" href="#home">الرئيسية</a>
-        <a class="nav-link" href="#products">منتجاتنا</a>
-        <a class="nav-link" href="#about">من نحن</a>
-        <a class="nav-link" href="#service">اطلب خدمة</a>
-        <a class="nav-link" href="#contact">تواصل معنا</a>
-      </nav>
-
-      <div class="actions">
-        <button class="icon-btn" id="cartBtn" title="السلة">
-          <span class="icon">🛒</span>
-          <span class="badge" id="cartCount">0</span>
-        </button>
-        <button class="btn" id="serviceBtn">اطلب خدمة</button>
-      </div>
     </div>
-  </div>
 
-  <header class="hero" id="home">
-    <div class="container hero-grid">
-      <!-- Left: time + date + quote -->
-      <section class="hero-left">
-        <div class="glass card">
-          <div class="time-row">
-            <div class="time-block">
-              <div class="kicker">الوقت الآن</div>
-              <div class="time" id="clock">--:--:--</div>
-            </div>
-            <div class="date-block">
-              <div class="kicker">اليوم والتاريخ</div>
-              <div class="date" id="today">--</div>
-            </div>
-          </div>
-          <div class="divider"></div>
-          <div class="quote-title">تحفيز اليوم</div>
-          <div class="quote" id="quote">…</div>
-          <div class="quote-mini">تتغير العبارة كل 5 ثوانٍ</div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+            <h5 class="fw-bold m-0"><i class="fas fa-shopping-bag text-warning me-2"></i> سلة المشتريات</h5>
+            <button class="btn-close" onclick="toggleCart()"></button>
         </div>
-
-        <div class="cta-row">
-          <a class="btn gold" href="#products">تصفح منتجاتنا</a>
-          <button class="btn outline" id="serviceBtn2">طلب خدمة مخصصة</button>
+        <div id="cartItemsContainer" style="flex-grow: 1; overflow-y: auto;"></div>
+        <div class="border-top pt-3">
+            <div class="d-flex justify-content-between fw-bold mb-3"><span>الإجمالي:</span><span id="cartTotal">$0.00</span></div>
+            <a href="https://musacid.gumroad.com/l/bdotqz" target="_blank" class="btn btn-warning w-100 fw-bold py-2">إتمام الشراء</a>
         </div>
-      </section>
-
-      <!-- Center: headline + marquee -->
-      <section class="hero-center">
-        <div class="headline">
-          <h1>خطط فاخرة… تُحوِّل حلمك إلى عادة</h1>
-          <p>تصميمات عملية، جداول واضحة، وزخرفة أنيقة — لتعيش مع القرآن خطوة بخطوة.</p>
-        </div>
-
-        <div class="marquee-wrap" aria-label="عناوين الخطط">
-          <div class="marquee" id="marquee">
-            <div class="marquee-track" id="marqueeTrack"></div>
-          </div>
-        </div>
-
-        <div class="hero-cards">
-          <div class="mini-card">
-            <div class="mini-icon">✨</div>
-            <div>
-              <div class="mini-title">تصميم ذهبي فاخر</div>
-              <div class="mini-text">هوية بصرية قريبة من روح خططك.</div>
-            </div>
-          </div>
-          <div class="mini-card">
-            <div class="mini-icon">📄</div>
-            <div>
-              <div class="mini-title">PDF جاهز للطباعة</div>
-              <div class="mini-text">نسق واضح مع صفحات إرشادية وجداول.</div>
-            </div>
-          </div>
-          <div class="mini-card">
-            <div class="mini-icon">🎯</div>
-            <div>
-              <div class="mini-title">نتائج قابلة للقياس</div>
-              <div class="mini-text">متابعة يومية وعلامة إنجاز.</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Right: latest products carousel -->
-      <aside class="hero-right">
-        <div class="glass card">
-          <div class="side-title">أحدث المنتجات</div>
-          <div class="carousel" id="carousel">
-            <div class="carousel-inner" id="carouselInner"></div>
-            <div class="carousel-controls">
-              <button class="chip" id="prevSlide">السابق</button>
-              <button class="chip" id="nextSlide">التالي</button>
-            </div>
-          </div>
-          <div class="hint">يتنقل تلقائيًا — ويمكنك التحكم بالأزرار</div>
-        </div>
-      </aside>
     </div>
-  </header>
 
-  <main>
-    <section class="section" id="products">
-      <div class="container">
-        <div class="section-head">
-          <h2>منتجاتنا</h2>
-          <p>اختر الخطة المناسبة، وأضفها للسلة — ثم أكمل الشراء بأمان عبر Gumroad.</p>
-        </div>
-
-        <div class="layout">
-          <div class="grid" id="productsGrid"></div>
-
-          <aside class="sidebar">
-            <div class="glass card">
-              <div class="side-title">الأكثر شيوعًا</div>
-              <div class="popular" id="popularList"></div>
-              <div class="divider"></div>
-              <button class="btn gold full" id="serviceBtn3">اطلب خدمة الآن</button>
-              <div class="micro">لم تجد ما تريده؟ اطلب تصميمًا مخصصًا.</div>
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar fixed-top shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-warning" href="#"><i class="fas fa-book-reader me-2"></i> مُساعِد</a>
+            
+            <div class="d-flex align-items-center order-lg-3 ms-lg-3">
+                <button class="btn btn-outline-light position-relative rounded-circle ms-3" onclick="toggleCart()" style="width: 40px; height: 40px;">
+                    <i class="fas fa-shopping-cart" style="font-size: 0.9rem;"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCount" style="font-size: 0.6rem;">0</span>
+                </button>
             </div>
 
-            <div class="glass card mt">
-              <div class="side-title">نماذج من داخل الخطة</div>
-              <div class="samples">
-                <img src="assets/guide.jpg" alt="نموذج صفحة الإرشادات" loading="lazy"/>
-                <img src="assets/week.jpg" alt="نموذج من الأسابيع" loading="lazy"/>
-              </div>
+            <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" href="#">الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#aboutModal"><i class="fas fa-users me-1"></i> من نحن</a></li> <li class="nav-item"><a class="nav-link" href="#products">الخطط</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">اطلب خدمة</a></li>
+                </ul>
             </div>
-          </aside>
         </div>
-      </div>
-    </section>
+    </nav>
 
-    <section class="section" id="about">
-      <div class="container">
-        <div class="section-head">
-          <h2>من نحن</h2>
-          <p>نحوِّل الأهداف الكبيرة إلى خطوات صغيرة قابلة للتنفيذ — بتصميمات عملية وأنيقة.</p>
-        </div>
-
-        <div class="about-grid">
-          <div class="glass card">
-            <h3>رسالتنا</h3>
-            <p>
-              صناعة خطط رقمية تساعدك على الثبات والاستمرارية، وتبسيط الطريق نحو الإنجاز.
-              نركز على الوضوح، والتحفيز، وسهولة الاستخدام، مع هوية بصرية فاخرة.
-            </p>
-            <div class="about-actions">
-              <a class="btn gold" href="#products">تصفح منتجاتنا</a>
-              <button class="btn outline" id="serviceBtn4">اطلب خدمة</button>
+    <header class="hero-section">
+        <div class="planning-strip">
+            <div class="ticker-wrap">
+                <div class="ticker">
+                    <span class="ticker-item"><i class="fas fa-star"></i> التخطيط هو سر النجاح</span>
+                    <span class="ticker-item"><i class="fas fa-clock"></i> نظم وقتك تملك حياتك</span>
+                    <span class="ticker-item"><i class="fas fa-book-open"></i> القرآن مشروع العمر</span>
+                    <span class="ticker-item"><i class="fas fa-chart-line"></i> خطوات صغيرة = إنجازات عظيمة</span>
+                    <span class="ticker-item"><i class="fas fa-check-circle"></i> ابدأ الآن ولا تسوف</span>
+                    <span class="ticker-item"><i class="fas fa-star"></i> التخطيط هو سر النجاح</span>
+                    <span class="ticker-item"><i class="fas fa-clock"></i> نظم وقتك تملك حياتك</span>
+                    <span class="ticker-item"><i class="fas fa-book-open"></i> القرآن مشروع العمر</span>
+                </div>
             </div>
-          </div>
-
-          <div class="glass card">
-            <h3>ماذا نقدم؟</h3>
-            <ul class="check">
-              <li>خطط حفظ القرآن (مستويات وباقات).</li>
-              <li>خطط مراجعة وتثبيت.</li>
-              <li>خطط تنظيم الوقت وتطوير الذات.</li>
-              <li>تعديل خطة موجودة أو تصميم جديد حسب احتياجك.</li>
-            </ul>
-          </div>
-
-          <div class="glass card">
-            <h3>لماذا خطط السراج؟</h3>
-            <ul class="check">
-              <li>مخرجات جاهزة للطباعة ومناسبة للمشاركة.</li>
-              <li>جداول واضحة + مساحات للتتبع والملاحظات.</li>
-              <li>تحفيز مستمر يحافظ على الزخم.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="service">
-      <div class="container">
-        <div class="section-head">
-          <h2>اطلب خدمة</h2>
-          <p class="callout">لم تجد ما تريده؟ اطلب من هنا — وسنعود لك بأفضل اقتراح.</p>
         </div>
 
-        <div class="glass card form-card">
-          <form id="serviceForm" action="https://formsubmit.co/musacidcex@gmail.com" method="POST">
-            <!-- FormSubmit settings -->
-            <input type="hidden" name="_subject" value="طلب خدمة جديد من musacid.me" />
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_next" value="https://musacid.me/#service" />
+        <div class="container">
+            <div class="row align-items-center">
+                
+                <div class="col-md-3 mb-5 mb-md-0 order-md-1">
+                    <div class="updates-box animate__animated animate__fadeInRight">
+                        <small class="text-warning fw-bold mb-3 d-block">✨ أحدث الإصدارات</small>
+                        <div id="updates-wrapper">
+                            <div class="update-item active">
+                                <img src="sirajplan.png" class="update-img-square" alt="كاملة">
+                                <h6 class="fw-bold m-0">الباقة الكاملة</h6>
+                                <small class="text-white-50">الأكثر طلباً</small>
+                            </div>
+                            <div class="update-item">
+                                <img src="level1.jpg" class="update-img-square" alt="م1">
+                                <h6 class="fw-bold m-0">المستوى الأول</h6>
+                                <small class="text-white-50">للمبتدئين</small>
+                            </div>
+                            <div class="update-item">
+                                <img src="level2.jpg" class="update-img-square" alt="م2">
+                                <h6 class="fw-bold m-0">المستوى الثاني</h6>
+                                <small class="text-white-50">مرحلة الختم</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="form-grid">
-              <label>
-                <span>الاسم</span>
-                <input name="name" required placeholder="اكتب اسمك" />
-              </label>
-              <label>
-                <span>وسيلة التواصل</span>
-                <input name="contact" required placeholder="واتساب أو بريد" />
-              </label>
+                <div class="col-md-6 text-center order-md-2 animate__animated animate__zoomIn">
+                    <h1 class="display-4 fw-bold mb-3 text-white">خطط إبداعية لحفظ القرآن وتطوير الذات</h1>
+                    <p class="lead mb-4 text-white-50">نصمم لك الطريق.. لتمشي فيه بثبات وإتقان</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="#products" class="btn btn-warning btn-lg rounded-pill px-4 fw-bold shadow">تصفح الخطط</a>
+                        <button class="btn btn-outline-light btn-lg rounded-pill px-4 fw-bold" data-bs-toggle="modal" data-bs-target="#aboutModal">تعرف علينا</button>
+                    </div>
+                </div>
 
-              <label class="full">
-                <span>نوع الطلب</span>
-                <select name="request_type" id="requestType" required>
-                  <option value="" selected disabled>اختر…</option>
-                  <option value="تعديل خطة موجودة">تعديل خطة موجودة</option>
-                  <option value="طلب تصميم خطة جديدة">طلب تصميم خطة جديدة</option>
-                  <option value="اقتراح أو ملاحظة">اقتراح أو ملاحظة</option>
-                  <option value="أخرى">أخرى</option>
-                </select>
-              </label>
+                <div class="col-md-3 mt-4 mt-md-0 order-md-3 d-none d-md-block">
+                    <div class="info-panel animate__animated animate__fadeInLeft">
+                        <div class="live-clock" id="clock">00:00</div>
+                        <div class="text-white-50 mb-3 small" id="date-display"></div>
+                        
+                        <div class="quote-card">
+                            <div class="text-white small fst-italic">
+                                <i class="fas fa-quote-right text-warning me-2"></i>
+                                <span id="quote-text" class="animate__animated"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-              <label class="full" id="existingPlanWrap" style="display:none">
-                <span>اختر الخطة المراد تعديلها</span>
-                <select name="existing_plan" id="existingPlan">
-                  <option value="" selected disabled>اختر…</option>
-                </select>
-              </label>
+            </div>
+        </div>
+    </header>
 
-              <label class="full" id="newPlanWrap" style="display:none">
-                <span>نوع الخطة المطلوبة</span>
-                <select name="new_plan_type" id="newPlanType">
-                  <option value="" selected disabled>اختر…</option>
-                  <option value="خطط حفظ القرآن">خطط حفظ القرآن</option>
-                  <option value="مراجعة القرآن">مراجعة القرآن</option>
-                  <option value="تنظيم وقت">تنظيم وقت</option>
-                  <option value="أخرى">أخرى</option>
-                </select>
-              </label>
+    <div class="container my-5" id="products">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="d-flex align-items-center mb-4">
+                    <h3 class="fw-bold m-0 text-dark">باقاتنا المميزة</h3>
+                    <div class="ms-3 flex-grow-1" style="height: 3px; background: linear-gradient(to left, var(--primary-gold), transparent);"></div>
+                </div>
 
-              <label class="full">
-                <span>تفاصيل الطلب</span>
-                <textarea name="details" rows="5" required placeholder="اكتب تفاصيلك هنا…"></textarea>
-              </label>
+                <div class="row g-4">
+                    <div class="col-md-6 col-xl-4">
+                        <div class="product-card text-center pb-3">
+                            <img src="level1.jpg" class="card-img-top" alt="المستوى الأول">
+                            <div class="card-body px-3">
+                                <h5 class="fw-bold mt-3">المستوى الأول (15 جزء)</h5>
+                                <p class="text-muted small">خطة 3 أشهر من الفاتحة للكهف</p>
+                                <h4 class="text-success fw-bold">$4.00</h4>
+                                <div class="row g-2 px-2">
+                                    <div class="col-6"><button class="btn btn-dark w-100 btn-sm py-2" onclick="addToCart('المستوى الأول', 4, 'level1.jpg')"><i class="fas fa-plus"></i> سلة</button></div>
+                                    <div class="col-6"><a href="https://musacid.gumroad.com/l/bdotqz" target="_blank" class="btn btn-warning w-100 btn-sm py-2 fw-bold">شراء</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xl-4">
+                        <div class="product-card text-center pb-3">
+                            <img src="level2.jpg" class="card-img-top" alt="المستوى الثاني">
+                            <div class="card-body px-3">
+                                <h5 class="fw-bold mt-3">المستوى الثاني (الختم)</h5>
+                                <p class="text-muted small">خطة 3 أشهر من الكهف للناس</p>
+                                <h4 class="text-success fw-bold">$4.00</h4>
+                                <div class="row g-2 px-2">
+                                    <div class="col-6"><button class="btn btn-dark w-100 btn-sm py-2" onclick="addToCart('المستوى الثاني', 4, 'level2.jpg')"><i class="fas fa-plus"></i> سلة</button></div>
+                                    <div class="col-6"><a href="https://musacid.gumroad.com/l/bdotqz" target="_blank" class="btn btn-warning w-100 btn-sm py-2 fw-bold">شراء</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xl-4">
+                        <div class="product-card text-center pb-3 border border-2 border-warning">
+                            <span class="badge-offer">توفير!</span>
+                            <img src="sirajplan.png" class="card-img-top" alt="الخطة الكاملة">
+                            <div class="card-body px-3">
+                                <h5 class="fw-bold mt-3">خطة السراج الكاملة</h5>
+                                <p class="text-muted small">المصحف كاملاً (30 جزء)</p>
+                                <h4 class="text-success fw-bold">$6.00 <s class="text-muted small">$8.00</s></h4>
+                                <div class="row g-2 px-2">
+                                    <div class="col-6"><button class="btn btn-dark w-100 btn-sm py-2" onclick="addToCart('الخطة الكاملة', 6, 'sirajplan.png')"><i class="fas fa-plus"></i> سلة</button></div>
+                                    <div class="col-6"><a href="https://musacid.gumroad.com/l/bdotqz" target="_blank" class="btn btn-warning w-100 btn-sm py-2 fw-bold">شراء</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-section mt-5 p-4 bg-white rounded-4 shadow-sm border" id="services">
+                    <div class="text-center mb-4">
+                        <h3 class="fw-bold text-dark">🛠 اطلب تصميم خاص</h3>
+                        <p class="text-muted">صمم خطتك بنفسك معنا</p>
+                    </div>
+                    <form onsubmit="sendServiceEmail(event)">
+                        <div class="row g-3">
+                            <div class="col-md-6"><input type="text" class="form-control bg-light" id="clientName" required placeholder="الاسم الكريم"></div>
+                            <div class="col-md-6"><input type="tel" class="form-control bg-light" id="clientPhone" required placeholder="رقم الواتس"></div>
+                            <div class="col-12">
+                                <select class="form-select bg-light" id="serviceType" onchange="toggleServiceFields()">
+                                    <option value="" selected disabled>نوع الخدمة...</option>
+                                    <option value="تصميم خطة جديدة">تصميم خطة جديدة</option>
+                                    <option value="تعديل خطة سابقة">تعديل خطة موجودة</option>
+                                    <option value="اقتراح">اقتراح / ملاحظة</option>
+                                </select>
+                            </div>
+                            <div class="col-12 hidden-field" id="modifyOptions" style="display:none;">
+                                <select class="form-select" id="modifySelection"><option>المستوى الأول</option><option>المستوى الثاني</option><option>الخطة الكاملة</option></select>
+                            </div>
+                            <div class="col-12 hidden-field" id="newPlanOptions" style="display:none;">
+                                <select class="form-select" id="newPlanSelection"><option>حفظ قرآن</option><option>مراجعة فقط</option><option>تنظيم وقت</option><option>أخرى</option></select>
+                            </div>
+                            <div class="col-12"><textarea class="form-control bg-light" id="messageBody" rows="3" placeholder="اكتب تفاصيل طلبك..."></textarea></div>
+                            <div class="col-12"><button type="submit" class="btn btn-dark w-100 fw-bold">إرسال الطلب <i class="fas fa-paper-plane ms-2"></i></button></div>
+                        </div>
+                    </form>
+                </div>
             </div>
 
-            <div class="form-actions">
-              <button class="btn gold" type="submit">إرسال الطلب</button>
-              <button class="btn outline" type="button" id="sendWhatsApp">إرسال نفس الطلب عبر واتساب</button>
-              <div class="status" id="formStatus" aria-live="polite"></div>
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="sidebar-wrapper animate__animated animate__fadeInLeft">
+                    <h6 class="fw-bold border-bottom pb-2 mb-3">🔥 الأكثر طلباً</h6>
+                    <a href="https://musacid.gumroad.com/l/bdotqz" target="_blank" class="d-flex align-items-center text-decoration-none text-dark mb-3 p-2 rounded hover-bg-light">
+                        <img src="sirajplan.png" width="50" height="50" class="rounded border">
+                        <div class="ms-2"><div class="fw-bold small">الخطة الكاملة</div><div class="text-success small fw-bold">$6.00</div></div>
+                    </a>
+                    <a href="https://musacid.gumroad.com/l/bdotqz" target="_blank" class="d-flex align-items-center text-decoration-none text-dark mb-3 p-2 rounded hover-bg-light">
+                        <img src="level1.jpg" width="50" height="50" class="rounded border">
+                        <div class="ms-2"><div class="fw-bold small">المستوى الأول</div><div class="text-success small fw-bold">$4.00</div></div>
+                    </a>
+                    <div class="alert alert-warning small text-center mt-4"><strong>ضمان الجودة ⭐️</strong><br>خطط مدروسة بعناية</div>
+                </div>
             </div>
-
-            <p class="note">
-              * سيتم إرسال الطلب إلى بريدنا مباشرة. زر واتساب يفتح رسالة جاهزة لتسهيل التواصل.
-            </p>
-          </form>
         </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="section-head">
-          <h2>تواصل معنا</h2>
-          <p>اختر الطريقة الأسهل — بريد أو واتساب برسالة جاهزة.</p>
-        </div>
-
-        <div class="contact-grid">
-          <div class="glass card">
-            <div class="contact-title">بريد إلكتروني</div>
-            <a class="btn gold full" href="mailto:musacidcex@gmail.com?subject=استفسار من musacid.me&body=السلام عليكم،%0D%0A">إرسال بريد الآن</a>
-            <div class="micro">musacidcex@gmail.com</div>
-          </div>
-
-          <div class="glass card">
-            <div class="contact-title">واتساب</div>
-            <a class="btn gold full" target="_blank" rel="noreferrer" href="https://wa.me/966548137612?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D8%8C%20%D9%84%D8%AF%D9%8A%20%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%A8%D8%AE%D8%B5%D9%88%D8%B5%20%D8%AE%D8%B7%D8%B7%D9%83%D9%85%20%D8%A7%D9%84%D8%B1%D9%82%D9%85%D9%8A%D8%A9%20...">مراسلة واتساب</a>
-            <div class="micro">00966548137612</div>
-          </div>
-
-          <div class="glass card">
-            <div class="contact-title">روابطنا</div>
-            <div class="socials">
-              <a class="chip" href="#home">الرئيسية</a>
-              <a class="chip" href="#products">المنتجات</a>
-              <a class="chip" href="#service">طلب خدمة</a>
-            </div>
-            <div class="micro">أضف روابط السوشيال هنا لاحقًا بسهولة.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div class="foot-left">
-        <div class="foot-title">اشترك بالبريد</div>
-        <form id="subscribeForm" class="subscribe">
-          <input id="subscribeEmail" type="email" required placeholder="اكتب بريدك الإلكتروني" />
-          <button class="btn gold" type="submit">اشتراك</button>
-        </form>
-        <div class="micro" id="subscribeStatus"></div>
-      </div>
-
-      <div class="foot-center">
-        <div class="foot-title">عن خطط السراج</div>
-        <div class="micro">
-          نحول الأهداف الكبيرة إلى خطوات صغيرة قابلة للتنفيذ — مع تصميمات عملية وتحفيزية.
-        </div>
-        <div class="social-row">
-          <a class="icon-chip" href="mailto:musacidcex@gmail.com" title="Email">✉️</a>
-          <a class="icon-chip" target="_blank" rel="noreferrer" href="https://wa.me/966548137612" title="WhatsApp">💬</a>
-        </div>
-      </div>
-
-      <div class="foot-right">
-        <button class="to-top" id="toTop" title="العودة للأعلى">⬆</button>
-        <div class="micro">تم التصميم — عبدالرشيد</div>
-      </div>
     </div>
-  </footer>
 
-  <!-- Cart Drawer -->
-  <div class="drawer" id="cartDrawer" aria-hidden="true">
-    <div class="drawer-backdrop" id="drawerBackdrop"></div>
-    <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="السلة">
-      <div class="drawer-head">
-        <div class="drawer-title">سلة المشتريات</div>
-        <button class="icon-btn" id="closeCart" title="إغلاق">✕</button>
-      </div>
-      <div class="drawer-body">
-        <div id="cartItems"></div>
-        <div class="cart-summary">
-          <div>الإجمالي</div>
-          <div class="total" id="cartTotal">$0</div>
+    <footer>
+        <div class="container pb-4">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-warning fw-bold mb-3">مُساعِد | Musacid</h5>
+                    <p class="small text-white-50">نحول الأهداف الكبيرة إلى خطوات صغيرة قابلة للتنفيذ.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-white fw-bold mb-3">القائمة البريدية</h5>
+                    <div class="input-group">
+                        <input type="email" class="form-control" id="subEmail" placeholder="إيميلك...">
+                        <button class="btn btn-warning fw-bold" onclick="fakeSubscribe()">اشتراك</button>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-white fw-bold mb-3">تواصل معنا</h5>
+                    <div class="d-flex gap-2">
+                        <a href="https://wa.me/966548137612" class="btn btn-sm btn-outline-light rounded-circle"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="btn btn-sm btn-outline-light rounded-circle"><i class="fab fa-twitter"></i></a>
+                    </div>
+                    <div class="mt-2 small text-white-50">musacidcex@gmail.com</div>
+                </div>
+            </div>
+            <div class="text-center pt-4 border-top border-secondary small text-white-50">جميع الحقوق محفوظة &copy; 2025 | تصميم وتطوير <strong class="text-warning">عبدالرشيد</strong></div>
         </div>
-        <div class="cart-actions">
-          <button class="btn outline full" id="clearCart">تفريغ السلة</button>
-          <div class="micro">الدفع يتم عبر Gumroad لكل منتج (زر شراء داخل البطاقة).</div>
-        </div>
-      </div>
-    </div>
-  </div>
+    </footer>
 
-  <!-- Gumroad overlay for fancy checkout -->
-  <script src="https://gumroad.com/js/gumroad.js"></script>
-  <script src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // عربة التسوق
+        let cart = JSON.parse(localStorage.getItem('myCart')) || [];
+        function toggleCart() { document.getElementById('cartSidebar').classList.toggle('active'); document.getElementById('overlay').classList.toggle('active'); renderCart(); }
+        function addToCart(name, price, img) {
+            cart.push({ name, price, img }); localStorage.setItem('myCart', JSON.stringify(cart)); updateCartCount();
+            const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
+            Toast.fire({ icon: 'success', title: 'أضيف للسلة' });
+        }
+        function removeFromCart(i) { cart.splice(i, 1); localStorage.setItem('myCart', JSON.stringify(cart)); renderCart(); updateCartCount(); }
+        function updateCartCount() { document.getElementById('cartCount').innerText = cart.length; }
+        function renderCart() {
+            const c = document.getElementById('cartItemsContainer'); const t = document.getElementById('cartTotal'); c.innerHTML = '';
+            if (!cart.length) { c.innerHTML = '<div class="text-center text-muted mt-5"><i class="fas fa-shopping-basket fa-2x mb-2 opacity-25"></i><p>فارغة</p></div>'; t.innerText = '$0.00'; return; }
+            let tot = 0;
+            cart.forEach((x, i) => { tot += x.price; c.innerHTML += `<div class="d-flex align-items-center mb-3 bg-light p-2 rounded"><img src="${x.img}" width="40" height="40" class="rounded me-2"><div class="flex-grow-1"><div class="small fw-bold">${x.name}</div><div class="text-success small fw-bold">$${x.price}</div></div><button class="btn btn-sm text-danger" onclick="removeFromCart(${i})"><i class="fas fa-times"></i></button></div>`; });
+            t.innerText = '$' + tot.toFixed(2);
+        }
+        updateCartCount();
+
+        // وظائف أخرى
+        function fakeSubscribe() {
+            if(document.getElementById('subEmail').value.includes('@')) Swal.fire({icon:'success', title:'تم الاشتراك!', text:'شكراً لثقتك بنا.', confirmButtonColor:'#d4ac0d'});
+            else Swal.fire({icon:'error', title:'خطأ', text:'البريد غير صحيح'});
+        }
+        function toggleServiceFields() {
+            const v = document.getElementById('serviceType').value;
+            document.getElementById('modifyOptions').style.display = (v.includes('تعديل')) ? 'block' : 'none';
+            document.getElementById('newPlanOptions').style.display = (v.includes('جديدة')) ? 'block' : 'none';
+        }
+        function sendServiceEmail(e) {
+            e.preventDefault();
+            Swal.fire({title:'جاري التحويل...', text:'سيتم فتح الإيميل لإرسال الطلب.', timer:2000, showConfirmButton:false, willClose:()=>{
+                const n=document.getElementById('clientName').value, p=document.getElementById('clientPhone').value, t=document.getElementById('serviceType').value, m=document.getElementById('messageBody').value;
+                window.location.href = `mailto:musacidcex@gmail.com?subject=طلب: ${t}&body=الاسم: ${n}%0D%0Aرقم: ${p}%0D%0Aالطلب: ${t}%0D%0Aتفاصيل: ${m}`;
+            }});
+        }
+
+        // ساعة وتحديثات واقتباسات
+        setInterval(() => {
+            const d = new Date(); document.getElementById('clock').innerText = d.toLocaleTimeString('en-US',{hour12:false,hour:'2-digit',minute:'2-digit'});
+            document.getElementById('date-display').innerText = d.toLocaleDateString('ar-SA',{weekday:'long',day:'numeric',month:'long'});
+        }, 1000);
+
+        let uIdx = 0; const ups = document.querySelectorAll('.update-item');
+        setInterval(() => { ups.forEach(e=>e.style.display='none'); ups[uIdx].style.display='block'; uIdx=(uIdx+1)%ups.length; }, 3000); ups[0].style.display='block';
+
+        const quotes = ["الإنجاز يبدأ بقرار", "وقتك هو رأس مالك", "خطط لدنياك وآخرتك", "القرآن نور وبركة", "استعن بالله ولا تعجز"];
+        let qIdx = 0;
+        setInterval(() => {
+            const el = document.getElementById('quote-text'); el.classList.remove('animate__fadeIn'); el.classList.add('animate__fadeOut');
+            setTimeout(() => { qIdx=(qIdx+1)%quotes.length; el.innerText=quotes[qIdx]; el.classList.remove('animate__fadeOut'); el.classList.add('animate__fadeIn'); }, 500);
+        }, 4000);
+
+        function topFunction() { window.scrollTo({top:0, behavior:'smooth'}); }
+        window.onscroll = function() { document.getElementById("scrollTopBtn").style.display = (document.body.scrollTop>20||document.documentElement.scrollTop>20)? "block":"none"; };
+    </script>
 </body>
 </html>
