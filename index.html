@@ -19,7 +19,7 @@
             --royal-blue: #0f2027;
             --light-bg: #f4f7f6;
             --whatsapp-green: #25D366;
-            --rose-gold: #b76e79; /* لون وردي ذهبي للمسات الجمالية */
+            --rose-gold: #b76e79;
         }
 
         body { 
@@ -122,11 +122,9 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
 
-        /* تجميل منطقة الساعة اليسرى */
         .info-panel { text-align: left; padding-right: 20px; border-right: 2px solid var(--primary-gold); }
         .live-clock { font-family: monospace; font-size: 1.8rem; font-weight: bold; color: var(--primary-gold); text-shadow: 0 0 15px rgba(212, 172, 13, 0.6); letter-spacing: 2px; }
         
-        /* بطاقة الإلهام الجديدة تحت الساعة */
         .daily-inspiration {
             background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(183, 110, 121, 0.15));
             border-radius: 15px;
@@ -188,9 +186,7 @@
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        /* ---------------- تجميلات الفوتر الجديدة ---------------- */
-        
-        /* شريط الإعلانات الخاص بالفوتر */
+        /* Footer */
         .footer-ticker-wrap {
             background: linear-gradient(90deg, #141e30, #243b55, #141e30);
             padding: 15px 0;
@@ -215,7 +211,7 @@
         
         @keyframes marquee-footer {
             0% { transform: translateX(0); }
-            100% { transform: translateX(50%); } /* اتجاه معاكس للشريط العلوي لكسر الملل */
+            100% { transform: translateX(50%); }
         }
 
         footer { 
@@ -299,10 +295,12 @@
                     <div class="payment-box">
                         <h6>Account Name:</h6>
                         <p class="name">CABDIRASHID SACID CISMAN</p>
+                        
                         <div class="payment-method">
-                            <span class="label">Zaad / EVC / Sahal:</span>
+                            <span class="label">Zaad:</span>
                             <span class="number">252634686352</span>
                         </div>
+                        
                         <div class="payment-method">
                             <span class="label">eDahab:</span>
                             <span class="number">252654686352</span>
@@ -519,7 +517,6 @@
                     <div class="d-flex justify-content-md-center align-items-center flex-wrap gap-2 payment-methods-footer">
                         <span class="badge bg-light text-dark p-2 border shadow-sm"><i class="fas fa-mobile-alt text-success me-1"></i> ZAAD</span>
                         <span class="badge bg-light text-dark p-2 border shadow-sm"><i class="fas fa-mobile-alt text-warning me-1"></i> E-DAHAB</span>
-                        <span class="badge bg-light text-dark p-2 border shadow-sm"><i class="fas fa-mobile-alt text-primary me-1"></i> EVC Plus</span>
                     </div>
                 </div>
 
@@ -572,74 +569,4 @@
                         <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> <strong>Nidaam dabagal oo xooggan:</strong> La socod sax ah oo ku saabsan safarkaaga (meesha aad ka bilaabayso iyo meesha aad ku dhamaynayso toddobaad kasta, inta aad xifdisay, inta aad dib u eegtay, iyo heerka saxnaanta), iyadoo ay jirto meel aad ku calaamadiso “guusha” marka aad gaarto hadafkaaga.</li>
                         <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> <strong>Jadwal maalinle ah oo cad:</strong> Qaybin faahfaahsan oo ka kooban (5 bog oo xifdin ah + dib-u-eegis xooggan), iyadoo si cad loo muujinayo lambarrada aayadaha bilowga iyo dhammaadka toddobaad kasta, iyadoo la raacayo qaybinta Mushafka Madiina.</li>
                         <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> <strong>Isku dheelitirnaan qumman:</strong> Nidaam caqli badan oo kuu oggolaanaya inaad hesho xifdin cusub adigoon lumin wixii hore u xafidnaa.</li>
-                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> <strong>Qiyaaso dhiirrigelin ah:</strong> Weedho dhiirrigelin leh oo lagu qaybiyey bog kasta iyo jadwal kasta si ay u cusboonaysiiyaan hamigaaga, u kiciyaan dadaalkaaga, isla markaana ula dagaallamaan caajiska iyo tabardarrada.</li>
-                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> <strong>Meel qoraal:</strong> Goobo gaar ah oo loogu talagalay inaad ku qorto qoraalladaada maalinlaha ah, iyo sidoo kale meel loogu talagalay qoraallo guud.</li>
-                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> <strong>Gunaanad guul leh:</strong> Qorshuhu wuxuu ku dhammaadaa “bogga khatmadda” oo loo qaabeeyey si kugu dhiirrigeliya inaad sii waddo dib-u-eegista isla markaana aad diiwaangeliso guushaada weyn.</li>
-                    </ul>
-                    <div class="alert alert-danger fw-bold"><i class="fas fa-exclamation-triangle me-2"></i> ⚠️ Digniin muhiim ah: Badeecadani waa dijitaal, waxaana loogu talagalay isticmaalka shakhsiga ah ee iibsadaha oo keliya (looma oggola in dib loo daabaco ama la iibiyo).</div>
-                </div>
-            `,
-            'level1': `
-                <div class="text-end" dir="rtl">
-                    <h4 class="text-warning fw-bold mb-3">خطة السراج - المستوى الأول</h4>
-                    <div class="alert alert-warning fw-bold border-warning fs-5 shadow-sm">
-                        <i class="fas fa-lightbulb me-2 text-warning"></i> تغطي هذه النسخة النصف الأول من القرآن الكريم (من سورة الفاتحة إلى سورة الكهف) فقط. لضمان رحلة ختم متصلة وتوفير ذكي، ننصحك باختيار <span class="text-danger">(الباقة الكاملة)</span> من القائمة؛ لتحصل على المستويين معاً بسعر مخفض وتكمل رحلتك دون توقف!
-                    </div>
-                </div>
-                <hr class="my-4 border-2 border-warning opacity-75">
-                <div dir="ltr" class="text-start">
-                    <h4 class="text-warning fw-bold mb-3">Qorshaha Al-Siraaj – Heerka Koowaad</h4>
-                    <div class="alert alert-warning fw-bold border-warning fs-5 shadow-sm">
-                        <i class="fas fa-lightbulb me-2 text-warning"></i> Nuqulkan wuxuu daboolayaa nuska hore ee Qur’aanka Kariimka ah (laga bilaabo Suuratul-Faatiha ilaa Suuratul-Kahf) oo keliya.<br><br>
-                        Si aad u hesho safar khatam ah oo isku xiran iyo kaydin caqli leh, waxaan kugula talineynaa inaad doorato <span class="text-danger">(xirmada dhamaystiran)</span> ee liiska ku jirta; si aad u hesho labada heer isla markaana qiimo jaban, una sii waddo safarkaaga adigoon hakad gelin!
-                    </div>
-                </div>
-            `,
-            'level2': `
-                <div class="text-end" dir="rtl">
-                    <h4 class="text-warning fw-bold mb-3">خطة السراج - المستوى الثاني</h4>
-                    <div class="alert alert-warning fw-bold border-warning fs-5 shadow-sm">
-                        <i class="fas fa-lightbulb me-2 text-warning"></i> 💡 ملاحظة هامة: تغطي هذه النسخة النصف الثاني من القرآن الكريم (من سورة مريم إلى سورة الناس) فقط. لضمان رحلة ختم متصلة من البداية وتوفير ذكي، ننصحك باختيار <span class="text-danger">(الباقة الكاملة)</span> من القائمة؛ لتحصل على المستويين معاً بسعر مخفض!
-                    </div>
-                </div>
-                <hr class="my-4 border-2 border-warning opacity-75">
-                <div dir="ltr" class="text-start">
-                    <h4 class="text-warning fw-bold mb-3">Qorshaha Al-Siraaj – Heerka Labaad</h4>
-                    <div class="alert alert-warning fw-bold border-warning fs-5 shadow-sm">
-                        <i class="fas fa-lightbulb me-2 text-warning"></i> 💡 Fiiro gaar ah: Nuqulkan wuxuu daboolayaa nuska labaad ee Qur’aanka Kariimka ah (laga bilaabo Suuratul-Maryam ilaa Suuratun-Naas) oo keliya.<br><br>
-                        Si aad u hubiso safar khatam ah oo isku xiran laga bilaabo bilowga isla markaana aad u hesho kaydin caqli leh, waxaan kugula talineynaa inaad doorato <span class="text-danger">(xirmada dhamaystiran)</span> ee liiska ku jirta; si aad u hesho labada heer isla markaana qiimo jaban!
-                    </div>
-                </div>
-            `
-        };
-
-        function openPaymentModal(productName, price) {
-            document.getElementById('modalProductName').innerText = productName;
-            document.getElementById('modalProductPrice').innerText = "$" + price.toFixed(2);
-            let waMessage = encodeURIComponent(`السلام عليكم، قمت بتحويل مبلغ $${price} لشراء (${productName}). أرفق لكم إيصال التحويل لاستلام الملف. | Waan idin salaamay, waxaan soo shubay $${price} si aan u iibsado (${productName}). Waa kan biilkii.`);
-            let waUrl = `https://wa.me/252634686352?text=${waMessage}`;
-            document.getElementById('waReceiptBtn').href = waUrl;
-            var myModal = new bootstrap.Modal(document.getElementById('paymentModal'));
-            myModal.show();
-        }
-
-        function openDetailsModal(productType) {
-            const content = productDetailsData[productType];
-            document.getElementById('detailsContent').innerHTML = content;
-            var detailsModal = new bootstrap.Modal(document.getElementById('detailsModal'));
-            detailsModal.show();
-        }
-
-        setInterval(() => {
-            const d = new Date(); document.getElementById('clock').innerText = d.toLocaleTimeString('en-US',{hour12:false,hour:'2-digit',minute:'2-digit'});
-            document.getElementById('date-display').innerText = d.toLocaleDateString('ar-SA',{weekday:'long',day:'numeric',month:'long'});
-        }, 1000);
-
-        let uIdx = 0; const ups = document.querySelectorAll('.update-item');
-        setInterval(() => { ups.forEach(e=>e.style.display='none'); ups[uIdx].style.display='block'; uIdx=(uIdx+1)%ups.length; }, 3000); ups[0].style.display='block';
-
-        function topFunction() { window.scrollTo({top:0, behavior:'smooth'}); }
-        window.onscroll = function() { document.getElementById("scrollTopBtn").style.display = (document.body.scrollTop>20||document.documentElement.scrollTop>20)? "block":"none"; };
-    </script>
-</body>
-</html>
+                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>
