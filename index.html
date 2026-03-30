@@ -459,4 +459,53 @@
                 <div class="text-end" dir="rtl">
                     <h4 class="text-warning fw-bold mb-3">خطة السراج - المستوى الثاني</h4>
                     <div class="alert alert-warning fw-bold border-warning fs-5">
-                        <i class="fas fa-lightbulb me-2 text-warning"></i> 💡 ملاحظة هامة: تغطي هذه النسخة النصف الثاني من القرآن الكريم (من سورة مريم إلى سورة الناس) فقط. لضمان رحلة ختم متصلة من البداية وتوفير ذكي، ننصحك با
+                        <i class="fas fa-lightbulb me-2 text-warning"></i> 💡 ملاحظة هامة: تغطي هذه النسخة النصف الثاني من القرآن الكريم (من سورة مريم إلى سورة الناس) فقط. لضمان رحلة ختم متصلة من البداية وتوفير ذكي، ننصحك باختيار <span class="text-danger">(الباقة الكاملة)</span> من القائمة؛ لتحصل على المستويين معاً بسعر مخفض!
+                    </div>
+                </div>
+                <hr class="my-4 border-2 border-warning opacity-75">
+                <div dir="ltr" class="text-start">
+                    <h4 class="text-warning fw-bold mb-3">Qorshaha Al-Siraaj – Heerka Labaad</h4>
+                    <div class="alert alert-warning fw-bold border-warning fs-5">
+                        <i class="fas fa-lightbulb me-2 text-warning"></i> 💡 Fiiro gaar ah: Nuqulkan wuxuu daboolayaa nuska labaad ee Qur’aanka Kariimka ah (laga bilaabo Suuratul-Maryam ilaa Suuratun-Naas) oo keliya.<br><br>
+                        Si aad u hubiso safar khatam ah oo isku xiran laga bilaabo bilowga isla markaana aad u hesho kaydin caqli leh, waxaan kugula talineynaa inaad doorato <span class="text-danger">(xirmada dhamaystiran)</span> ee liiska ku jirta; si aad u hesho labada heer isla markaana qiimo jaban!
+                    </div>
+                </div>
+            `
+        };
+
+        function openPaymentModal(productName, price) {
+            document.getElementById('modalProductName').innerText = productName;
+            document.getElementById('modalProductPrice').innerText = "$" + price.toFixed(2);
+            let waMessage = encodeURIComponent(`السلام عليكم، قمت بتحويل مبلغ $${price} لشراء (${productName}). أرفق لكم إيصال التحويل لاستلام الملف. | Waan idin salaamay, waxaan soo shubay $${price} si aan u iibsado (${productName}). Waa kan biilkii.`);
+            let waUrl = `https://wa.me/252634686352?text=${waMessage}`;
+            document.getElementById('waReceiptBtn').href = waUrl;
+            var myModal = new bootstrap.Modal(document.getElementById('paymentModal'));
+            myModal.show();
+        }
+
+        // دالة جديدة تستقبل نوع المنتج وتعرض النص الخاص به
+        function openDetailsModal(productType) {
+            // جلب النص المناسب من الكائن أعلاه
+            const content = productDetailsData[productType];
+            
+            // حقن النص داخل النافذة المنبثقة
+            document.getElementById('detailsContent').innerHTML = content;
+            
+            // فتح النافذة المنبثقة
+            var detailsModal = new bootstrap.Modal(document.getElementById('detailsModal'));
+            detailsModal.show();
+        }
+
+        setInterval(() => {
+            const d = new Date(); document.getElementById('clock').innerText = d.toLocaleTimeString('en-US',{hour12:false,hour:'2-digit',minute:'2-digit'});
+            document.getElementById('date-display').innerText = d.toLocaleDateString('ar-SA',{weekday:'long',day:'numeric',month:'long'});
+        }, 1000);
+
+        let uIdx = 0; const ups = document.querySelectorAll('.update-item');
+        setInterval(() => { ups.forEach(e=>e.style.display='none'); ups[uIdx].style.display='block'; uIdx=(uIdx+1)%ups.length; }, 3000); ups[0].style.display='block';
+
+        function topFunction() { window.scrollTo({top:0, behavior:'smooth'}); }
+        window.onscroll = function() { document.getElementById("scrollTopBtn").style.display = (document.body.scrollTop>20||document.documentElement.scrollTop>20)? "block":"none"; };
+    </script>
+</body>
+</html>
