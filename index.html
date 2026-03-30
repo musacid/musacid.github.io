@@ -66,6 +66,37 @@
             100% { transform: translate3d(50%, 0, 0); }
         }
 
+        /* شريط الصور المتحرك الجديد (كالأخبار) */
+        .image-slider-container {
+            width: 100%;
+            overflow: hidden;
+            background: #ffffff;
+            padding: 20px 0;
+            white-space: nowrap;
+            direction: ltr; /* اتجاه من اليسار لليمين لضمان استمرار الحركة بسلاسة */
+            border-bottom: 3px solid var(--primary-gold);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .image-slide-track {
+            display: inline-block;
+            animation: image-scroll 35s linear infinite;
+        }
+        .image-slide-track:hover {
+            animation-play-state: paused; /* يتوقف عند تمرير الماوس */
+        }
+        .image-slide-track img {
+            height: 160px; /* الارتفاع المناسب (حوالي 3 سم) */
+            margin: 0 10px;
+            border-radius: 12px;
+            border: 2px solid #eee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            object-fit: cover;
+        }
+        @keyframes image-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         .updates-box {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 20px;
@@ -92,11 +123,6 @@
 
         .info-panel { text-align: left; padding-right: 20px; border-right: 2px solid var(--primary-gold); }
         .live-clock { font-family: monospace; font-size: 1.5rem; color: var(--primary-gold); text-shadow: 0 0 10px rgba(212, 172, 13, 0.5); }
-        .quote-card {
-            background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px;
-            margin-top: 15px; border-left: 4px solid var(--primary-gold);
-            min-height: 80px; display: flex; align-items: center;
-        }
 
         /* Products */
         .product-card { border: none; border-radius: 15px; background: white; box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: 0.3s; overflow: hidden; height: 100%; position: relative; }
@@ -112,16 +138,13 @@
         }
 
         .sidebar-wrapper { position: sticky; top: 100px; background: white; padding: 20px; border-radius: 15px; border: 1px solid #eee; }
-
         footer { background-color: var(--dark-blue); color: #aaa; padding-top: 60px; margin-top: 80px; border-top: 5px solid var(--primary-gold); }
         #scrollTopBtn { display: none; position: fixed; bottom: 30px; left: 30px; z-index: 99; border: none; background-color: var(--primary-gold); color: white; padding: 15px; border-radius: 50%; cursor: pointer; }
 
-        /* Modal Styles */
         .modal-content { border-radius: 20px; border: none; overflow: hidden; }
         .modal-header { background: var(--dark-blue); color: white; border-bottom: 4px solid var(--primary-gold); }
         .modal-body { background: #f9f9f9; padding: 30px; text-align: center; }
         
-        /* Payment Specific Styles */
         .payment-box {
             background: #ffffff; border: 2px dashed var(--primary-gold); padding: 20px;
             border-radius: 15px; margin-bottom: 20px; text-align: left; direction: ltr;
@@ -146,29 +169,24 @@
             70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
-
     </style>
 </head>
 <body>
 
     <button onclick="topFunction()" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
 
-    <div class="modal fade" id="aboutModal" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="detailsModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title fw-bold"><i class="fas fa-info-circle me-2"></i> من نحن؟</h5>
+                    <h5 class="modal-title fw-bold"><i class="fas fa-info-circle me-2"></i> تفاصيل الخطة | Faahfaahinta Qorshaha</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="icon" style="width: 80px; margin-bottom: 20px;">
-                    <h3 class="fw-bold mb-3" style="color: var(--dark-blue);">مُساعِد | Musacid</h3>
-                    <p class="lead text-muted mb-4">
-                        نحن منصة متخصصة في تقديم حلول <strong>التخطيط الاستراتيجي</strong> والبحوث العلمية، 
-                        نسخر خبراتنا لتصميم خطط إبداعية ومتقنة تساعدك في حفظ القرآن الكريم، تنظيم الوقت، وتطوير الذات.
-                    </p>
-                    <div class="mt-4">
-                        <a href="#products" class="btn btn-warning fw-bold px-4 rounded-pill" data-bs-dismiss="modal">تصفح الخطط الآن</a>
+                <div class="modal-body text-end" id="detailsContent">
+                    <div class="text-center p-4">
+                        <div class="spinner-border text-warning mb-3" role="status"></div>
+                        <h5 class="fw-bold">بانتظار إضافة وصف الخطة...</h5>
+                        <p class="text-muted">Fadlan sug, faahfaahinta ayaa dhowaan lasoo gelin doonaa.</p>
                     </div>
                 </div>
             </div>
@@ -179,31 +197,33 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 shadow-lg">
                 <div class="modal-header bg-dark text-warning">
-                    <h5 class="modal-title fw-bold"><i class="fas fa-shield-alt me-2"></i> الدفع الآمن والسريع</h5>
+                    <h5 class="modal-title fw-bold"><i class="fas fa-shield-alt me-2"></i> الدفع الآمن | Bixinta Lacagta</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <h4 class="fw-bold text-dark mb-2" id="modalProductName">اسم المنتج</h4>
-                    <p class="text-muted mb-4">للحصول على الملف فوراً، يرجى تحويل مبلغ <strong id="modalProductPrice" class="text-danger fs-4 mx-1">$0.00</strong> إلى أحد الأرقام التالية:</p>
+                    <p class="text-muted mb-2">للحصول على الملف فوراً، يرجى تحويل مبلغ <strong id="modalProductPrice" class="text-danger fs-4 mx-1">$0.00</strong> إلى أحد الأرقام التالية:</p>
+                    <p class="text-muted mb-4 small fw-bold" style="color: #27ae60 !important;">Si aad u hesho feylka isla markaana, fadlan ku shub lacagta nambarada hoose:</p>
 
                     <div class="payment-box">
                         <h6>Account Name:</h6>
                         <p class="name">CABDIRASHID SACID CISMAN</p>
                         
                         <div class="payment-method">
-                            <span class="label">Zaad Service:</span>
+                            <span class="label">Zaad / EVC / Sahal:</span>
                             <span class="number">252634686352</span>
                         </div>
                         <div class="payment-method">
-                            <span class="label">eDahab / EVC / Sahal:</span>
+                            <span class="label">eDahab:</span>
                             <span class="number">252654686352</span>
                         </div>
                     </div>
 
-                    <p class="small text-danger fw-bold mb-3"><i class="fas fa-exclamation-triangle me-1"></i> الخطوة الأخيرة: أرسل صورة أو رسالة التحويل عبر الواتساب لاستلام الملف مباشرة!</p>
+                    <p class="small text-danger fw-bold mb-1"><i class="fas fa-exclamation-triangle me-1"></i> الخطوة الأخيرة: أرسل صورة التحويل عبر الواتساب لاستلام الملف مباشرة!</p>
+                    <p class="small text-danger fw-bold mb-3"><i class="fas fa-check-circle me-1"></i> Tallaabada ugu dambeysa: Soo dir sawirka lacag bixinta WhatsApp-ka si aad feylka u hesho!</p>
 
                     <a id="waReceiptBtn" href="#" target="_blank" class="btn-whatsapp w-100">
-                        <i class="fab fa-whatsapp fa-lg"></i> أرسل إيصال التحويل هنا 📥
+                        <i class="fab fa-whatsapp fa-lg"></i> أرسل إيصال التحويل | Halkan kusoo dir 📥
                     </a>
                 </div>
             </div>
@@ -213,17 +233,13 @@
     <nav class="navbar navbar-expand-lg navbar-dark custom-navbar fixed-top shadow">
         <div class="container">
             <a class="navbar-brand fw-bold text-warning" href="#"><i class="fas fa-book-reader me-2"></i> مُساعِد</a>
-            
             <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" href="#">الرئيسية</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#aboutModal"><i class="fas fa-users me-1"></i> من نحن</a></li> 
                     <li class="nav-item"><a class="nav-link" href="#products">الخطط والعروض <span class="badge bg-danger ms-1">🔥</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">اطلب خدمة</a></li>
                 </ul>
             </div>
         </div>
@@ -235,8 +251,8 @@
                 <div class="ticker">
                     <span class="ticker-item"><i class="fas fa-star"></i> التخطيط هو سر النجاح</span>
                     <span class="ticker-item"><i class="fas fa-bolt"></i> خصم 50% لفترة محدودة جداً</span>
-                    <span class="ticker-item"><i class="fas fa-book-open"></i> القرآن مشروع العمر</span>
-                    <span class="ticker-item"><i class="fas fa-bolt"></i> خصم 50% لفترة محدودة جداً</span>
+                    <span class="ticker-item"><i class="fas fa-book-open"></i> Fursadan ka faa'iidayso</span>
+                    <span class="ticker-item"><i class="fas fa-bolt"></i> Waqtigu waa xadidan yahay</span>
                     <span class="ticker-item"><i class="fas fa-check-circle"></i> ابدأ الآن ولا تسوف</span>
                 </div>
             </div>
@@ -244,25 +260,21 @@
 
         <div class="container">
             <div class="row align-items-center">
-                
                 <div class="col-md-3 mb-5 mb-md-0 order-md-1">
                     <div class="updates-box animate__animated animate__fadeInRight">
-                        <small class="text-warning fw-bold mb-3 d-block">✨ العروض الحالية</small>
+                        <small class="text-warning fw-bold mb-3 d-block">✨ العروض الحالية | Dalabyada</small>
                         <div id="updates-wrapper">
                             <div class="update-item active">
                                 <img src="sirajplan.png" class="update-img-square" alt="كاملة">
                                 <h6 class="fw-bold m-0">الباقة الكاملة</h6>
-                                <small class="text-white-50">نصف السعر!</small>
                             </div>
                             <div class="update-item">
-                                <img src="photo_2026-03-24_09-15-39.jpg" class="update-img-square" alt="م1">
+                                <img src="levelone.jpg" class="update-img-square" alt="م1">
                                 <h6 class="fw-bold m-0">المستوى الأول</h6>
-                                <small class="text-white-50">خصم 50%</small>
                             </div>
                             <div class="update-item">
-                                <img src="photo_2026-03-24_09-16-00.jpg" class="update-img-square" alt="م2">
+                                <img src="leveltwo.jpg" class="update-img-square" alt="م2">
                                 <h6 class="fw-bold m-0">المستوى الثاني</h6>
-                                <small class="text-white-50">خصم 50%</small>
                             </div>
                         </div>
                     </div>
@@ -270,9 +282,10 @@
 
                 <div class="col-md-6 text-center order-md-2 animate__animated animate__zoomIn">
                     <h1 class="display-4 fw-bold mb-3 text-white">خطط إبداعية لحفظ القرآن وتطوير الذات</h1>
-                    <p class="lead mb-4 text-warning fw-bold">🔥 تخفيضات كبرى 50% لفترة محدودة! احصل على خطتك الآن 🔥</p>
+                    <p class="lead mb-2 text-warning fw-bold">🔥 تخفيضات كبرى 50% لفترة محدودة! العرض سينتهي قريباً 🔥</p>
+                    <p class="mb-4 text-white-50 fw-bold fs-5">Fursadan ka faa'iidayso, waqtigu waa xadidan yahay!</p>
                     <div class="d-flex justify-content-center gap-3">
-                        <a href="#products" class="btn btn-warning btn-lg rounded-pill px-5 fw-bold shadow-lg">اغتنم العرض الآن</a>
+                        <a href="#products" class="btn btn-warning btn-lg rounded-pill px-5 fw-bold shadow-lg">اغتنم العرض الآن | Iibso Hada</a>
                     </div>
                 </div>
 
@@ -280,19 +293,23 @@
                     <div class="info-panel animate__animated animate__fadeInLeft">
                         <div class="live-clock" id="clock">00:00</div>
                         <div class="text-white-50 mb-3 small" id="date-display"></div>
-                        
-                        <div class="quote-card">
-                            <div class="text-white small fst-italic">
-                                <i class="fas fa-quote-right text-warning me-2"></i>
-                                <span id="quote-text" class="animate__animated"></span>
-                            </div>
-                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </header>
+
+    <div class="image-slider-container">
+        <div class="image-slide-track">
+            <img src="levelone.jpg" alt="خطة 1">
+            <img src="leveltwo.jpg" alt="خطة 2">
+            <img src="sirajplan.png" alt="الخطة الكاملة">
+            
+            <img src="levelone.jpg" alt="خطة 1">
+            <img src="leveltwo.jpg" alt="خطة 2">
+            <img src="sirajplan.png" alt="الخطة الكاملة">
+        </div>
+    </div>
 
     <div class="container my-5" id="products">
         <div class="row">
@@ -306,13 +323,15 @@
                     <div class="col-md-6 col-xl-4">
                         <div class="product-card text-center pb-3 border border-warning">
                             <span class="badge-offer">خصم 50%</span>
-                            <img src="photo_2026-03-24_09-15-39.jpg" class="card-img-top" alt="المستوى الأول">
+                            <img src="levelone.jpg" class="card-img-top" alt="المستوى الأول">
                             <div class="card-body px-3">
                                 <h5 class="fw-bold mt-3">المستوى الأول (15 جزء)</h5>
-                                <p class="text-muted small">خطة 3 أشهر من الفاتحة للكهف</p>
                                 <h3 class="text-success fw-bold mb-3">$2.00 <s class="text-muted small fs-6">$4.00</s></h3>
-                                <button class="btn btn-warning w-100 fw-bold py-2 shadow-sm" onclick="openPaymentModal('المستوى الأول (15 جزء)', 2)">
-                                    <i class="fas fa-bolt me-1"></i> شراء الآن
+                                <button class="btn btn-warning w-100 fw-bold py-2 shadow-sm mb-2" onclick="openPaymentModal('المستوى الأول (15 جزء)', 2)">
+                                    <i class="fas fa-bolt me-1"></i> شراء الآن | Iibso Hada
+                                </button>
+                                <button class="btn btn-outline-dark w-100 fw-bold py-1 btn-sm" onclick="openDetailsModal()">
+                                    <i class="fas fa-info-circle me-1"></i> تعرف على الخطة | Faahfaahin
                                 </button>
                             </div>
                         </div>
@@ -321,13 +340,15 @@
                     <div class="col-md-6 col-xl-4">
                         <div class="product-card text-center pb-3 border border-warning">
                             <span class="badge-offer">خصم 50%</span>
-                            <img src="photo_2026-03-24_09-16-00.jpg" class="card-img-top" alt="المستوى الثاني">
+                            <img src="leveltwo.jpg" class="card-img-top" alt="المستوى الثاني">
                             <div class="card-body px-3">
                                 <h5 class="fw-bold mt-3">المستوى الثاني (الختم)</h5>
-                                <p class="text-muted small">خطة 3 أشهر من الكهف للناس</p>
                                 <h3 class="text-success fw-bold mb-3">$2.00 <s class="text-muted small fs-6">$4.00</s></h3>
-                                <button class="btn btn-warning w-100 fw-bold py-2 shadow-sm" onclick="openPaymentModal('المستوى الثاني (الختم)', 2)">
-                                    <i class="fas fa-bolt me-1"></i> شراء الآن
+                                <button class="btn btn-warning w-100 fw-bold py-2 shadow-sm mb-2" onclick="openPaymentModal('المستوى الثاني (الختم)', 2)">
+                                    <i class="fas fa-bolt me-1"></i> شراء الآن | Iibso Hada
+                                </button>
+                                <button class="btn btn-outline-dark w-100 fw-bold py-1 btn-sm" onclick="openDetailsModal()">
+                                    <i class="fas fa-info-circle me-1"></i> تعرف على الخطة | Faahfaahin
                                 </button>
                             </div>
                         </div>
@@ -339,37 +360,16 @@
                             <img src="sirajplan.png" class="card-img-top" alt="الخطة الكاملة">
                             <div class="card-body px-3">
                                 <h5 class="fw-bold mt-3">خطة السراج الكاملة</h5>
-                                <p class="text-muted small">المصحف كاملاً (30 جزء)</p>
                                 <h3 class="text-success fw-bold mb-3">$3.00 <s class="text-muted small fs-6">$6.00</s></h3>
-                                <button class="btn btn-danger w-100 fw-bold py-2 shadow" onclick="openPaymentModal('خطة السراج الكاملة (30 جزء)', 3)">
-                                    <i class="fas fa-fire me-1"></i> شراء الآن
+                                <button class="btn btn-danger w-100 fw-bold py-2 shadow mb-2" onclick="openPaymentModal('خطة السراج الكاملة (30 جزء)', 3)">
+                                    <i class="fas fa-fire me-1"></i> شراء الآن | Iibso Hada
+                                </button>
+                                <button class="btn btn-outline-dark w-100 fw-bold py-1 btn-sm" onclick="openDetailsModal()">
+                                    <i class="fas fa-info-circle me-1"></i> تعرف على الخطة | Faahfaahin
                                 </button>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="service-section mt-5 p-4 bg-white rounded-4 shadow-sm border" id="services">
-                    <div class="text-center mb-4">
-                        <h3 class="fw-bold text-dark">🛠 اطلب تصميم خاص</h3>
-                        <p class="text-muted">صمم خطتك بنفسك معنا</p>
-                    </div>
-                    <form onsubmit="sendServiceEmail(event)">
-                        <div class="row g-3">
-                            <div class="col-md-6"><input type="text" class="form-control bg-light" id="clientName" required placeholder="الاسم الكريم"></div>
-                            <div class="col-md-6"><input type="tel" class="form-control bg-light" id="clientPhone" required placeholder="رقم الواتس"></div>
-                            <div class="col-12">
-                                <select class="form-select bg-light" id="serviceType" onchange="toggleServiceFields()">
-                                    <option value="" selected disabled>نوع الخدمة...</option>
-                                    <option value="تصميم خطة جديدة">تصميم خطة جديدة</option>
-                                    <option value="تعديل خطة سابقة">تعديل خطة موجودة</option>
-                                    <option value="اقتراح">اقتراح / ملاحظة</option>
-                                </select>
-                            </div>
-                            <div class="col-12"><textarea class="form-control bg-light" id="messageBody" rows="3" placeholder="اكتب تفاصيل طلبك..."></textarea></div>
-                            <div class="col-12"><button type="submit" class="btn btn-dark w-100 fw-bold">إرسال الطلب <i class="fas fa-paper-plane ms-2"></i></button></div>
-                        </div>
-                    </form>
                 </div>
             </div>
 
@@ -381,7 +381,7 @@
                         <div class="ms-2"><div class="fw-bold small">الخطة الكاملة</div><div class="text-danger small fw-bold">$3.00 <s class="text-muted ms-1">$6.00</s></div></div>
                     </a>
                     <a href="javascript:void(0)" onclick="openPaymentModal('المستوى الأول (15 جزء)', 2)" class="d-flex align-items-center text-decoration-none text-dark mb-3 p-2 rounded hover-bg-light">
-                        <img src="photo_2026-03-24_09-15-39.jpg" width="50" height="50" class="rounded border">
+                        <img src="levelone.jpg" width="50" height="50" class="rounded border">
                         <div class="ms-2"><div class="fw-bold small">المستوى الأول</div><div class="text-success small fw-bold">$2.00</div></div>
                     </a>
                     <div class="alert alert-success small text-center mt-4 border-success"><strong><i class="fas fa-check-circle"></i> تسليم فوري</strong><br>عبر الواتساب بعد التحويل مباشرة</div>
@@ -392,56 +392,39 @@
 
     <footer>
         <div class="container pb-4">
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <h5 class="text-warning fw-bold mb-3">مُساعِد | Musacid</h5>
-                    <p class="small text-white-50">نحول الأهداف الكبيرة إلى خطوات صغيرة قابلة للتنفيذ.</p>
+            <div class="row align-items-center text-center text-md-start">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <h4 class="text-warning fw-bold mb-2">مُساعِد | Musacid</h4>
+                    <p class="text-white-50">نحول الأهداف الكبيرة إلى خطوات صغيرة قابلة للتنفيذ.</p>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <h5 class="text-white fw-bold mb-3">تواصل معنا</h5>
-                    <div class="d-flex gap-2">
-                        <a href="https://wa.me/252634686352" class="btn btn-sm btn-outline-light rounded-circle"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                    <div class="mt-2 small text-white-50">musacidcex@gmail.com</div>
+                <div class="col-md-6 text-md-end">
+                    <h5 class="text-white fw-bold mb-3">تواصل معنا | Nala soo xiriir</h5>
+                    <a href="https://wa.me/252634686352" class="btn btn-success text-white px-4 py-2 rounded-pill fw-bold shadow-lg" target="_blank" style="font-size: 1.2rem;">
+                        <i class="fab fa-whatsapp fa-lg me-2"></i> +252 63 4686352
+                    </a>
                 </div>
             </div>
-            <div class="text-center pt-4 border-top border-secondary small text-white-50">جميع الحقوق محفوظة &copy; 2026 | تصميم وتطوير <strong class="text-warning">عبدالرشيد</strong></div>
+            <div class="text-center pt-4 mt-4 border-top border-secondary small text-white-50">جميع الحقوق محفوظة &copy; 2026 | تصميم وتطوير <strong class="text-warning">عبدالرشيد</strong></div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // دالة فتح نافذة الدفع وتجهيز رابط الواتساب
         function openPaymentModal(productName, price) {
-            // تحديث اسم وسعر المنتج في النافذة
             document.getElementById('modalProductName').innerText = productName;
             document.getElementById('modalProductPrice').innerText = "$" + price.toFixed(2);
-
-            // تجهيز رسالة الواتساب التلقائية
-            let waMessage = encodeURIComponent(`السلام عليكم، قمت بتحويل مبلغ $${price} لشراء (${productName}). أرفق لكم إيصال التحويل لاستلام الملف.`);
+            let waMessage = encodeURIComponent(`السلام عليكم، قمت بتحويل مبلغ $${price} لشراء (${productName}). أرفق لكم إيصال التحويل لاستلام الملف. | Waan idin salaamay, waxaan soo shubay $${price} si aan u iibsado (${productName}). Waa kan biilkii.`);
             let waUrl = `https://wa.me/252634686352?text=${waMessage}`;
-            
-            // تحديث رابط زر الواتساب
             document.getElementById('waReceiptBtn').href = waUrl;
-
-            // إظهار النافذة
             var myModal = new bootstrap.Modal(document.getElementById('paymentModal'));
             myModal.show();
         }
 
-        // وظائف أخرى
-        function toggleServiceFields() {
-            // function kept empty or simple for form
-        }
-        function sendServiceEmail(e) {
-            e.preventDefault();
-            Swal.fire({title:'جاري التحويل...', text:'سيتم فتح الإيميل لإرسال الطلب.', timer:2000, showConfirmButton:false, willClose:()=>{
-                const n=document.getElementById('clientName').value, p=document.getElementById('clientPhone').value, t=document.getElementById('serviceType').value, m=document.getElementById('messageBody').value;
-                window.location.href = `mailto:musacidcex@gmail.com?subject=طلب: ${t}&body=الاسم: ${n}%0D%0Aرقم: ${p}%0D%0Aالطلب: ${t}%0D%0Aتفاصيل: ${m}`;
-            }});
+        function openDetailsModal() {
+            var detailsModal = new bootstrap.Modal(document.getElementById('detailsModal'));
+            detailsModal.show();
         }
 
-        // ساعة وتحديثات واقتباسات
         setInterval(() => {
             const d = new Date(); document.getElementById('clock').innerText = d.toLocaleTimeString('en-US',{hour12:false,hour:'2-digit',minute:'2-digit'});
             document.getElementById('date-display').innerText = d.toLocaleDateString('ar-SA',{weekday:'long',day:'numeric',month:'long'});
@@ -449,13 +432,6 @@
 
         let uIdx = 0; const ups = document.querySelectorAll('.update-item');
         setInterval(() => { ups.forEach(e=>e.style.display='none'); ups[uIdx].style.display='block'; uIdx=(uIdx+1)%ups.length; }, 3000); ups[0].style.display='block';
-
-        const quotes = ["الإنجاز يبدأ بقرار", "وقتك هو رأس مالك", "خطط لدنياك وآخرتك", "القرآن نور وبركة", "استعن بالله ولا تعجز"];
-        let qIdx = 0;
-        setInterval(() => {
-            const el = document.getElementById('quote-text'); el.classList.remove('animate__fadeIn'); el.classList.add('animate__fadeOut');
-            setTimeout(() => { qIdx=(qIdx+1)%quotes.length; el.innerText=quotes[qIdx]; el.classList.remove('animate__fadeOut'); el.classList.add('animate__fadeIn'); }, 500);
-        }, 4000);
 
         function topFunction() { window.scrollTo({top:0, behavior:'smooth'}); }
         window.onscroll = function() { document.getElementById("scrollTopBtn").style.display = (document.body.scrollTop>20||document.documentElement.scrollTop>20)? "block":"none"; };
